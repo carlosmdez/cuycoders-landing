@@ -20,4 +20,4 @@ Static Astro website, Spanish and English, web, Android/iOS, enterprise software
 Orange, approachable and professional. Cuy Coders is the confirmed name. Guinea pigs may be used subtly; placeholders are authorized. Tailwind and Lucide, modular components, DRY/KISS and single responsibility. Delegate only to GPT-6 Luna.
 
 ## Evidence on Hand
-Owner-supplied 8+ years experience. No customer logos, outcome metrics, mascot images, contact address or production domain provided.
+Owner-supplied 8+ years experience. Confirmed production domain: https://cuycoders.com. No customer logos, outcome metrics, mascot images or contact address supplied.

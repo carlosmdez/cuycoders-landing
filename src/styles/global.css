@@ -450,7 +450,11 @@ textarea {
   color: #687360;
   font-size: 9px;
 }
-.demo-title h3 {
+.demo-heading {
+  font-family: var(--display);
+  font-weight: 650;
+  line-height: 1.15;
+  color: var(--ink);
   font-size: 17px;
   margin-top: 5px;
   letter-spacing: -0.025em;
@@ -1104,19 +1108,19 @@ textarea {
   color: var(--accent);
   font-weight: 650;
 }
-.blog-card h3 {
+.blog-card-title {
   font-size: 21px;
   line-height: 1.35;
 }
-.blog-card h3 a {
+.blog-card-title a {
   display: flex;
   justify-content: space-between;
   gap: 15px;
 }
-.blog-card h3 svg {
+.blog-card-title svg {
   margin-top: 4px;
 }
-.blog-card h3 a:hover {
+.blog-card-title a:hover {
   color: var(--accent);
 }
 .blog-card > p {
@@ -1382,7 +1386,7 @@ textarea {
   .demo-content {
     padding: 20px 15px;
   }
-  .demo-title h3 {
+  .demo-heading {
     font-size: 14px;
   }
   .demo-stats small {
@@ -1459,7 +1463,7 @@ textarea {
   .demo-content {
     padding: 25px 22px;
   }
-  .demo-title h3 {
+  .demo-heading {
     font-size: 17px;
   }
   .demo-stats small {
@@ -1544,7 +1548,7 @@ textarea {
     margin-top: 0;
     font-size: 9px;
   }
-  .blog-card h3 {
+  .blog-card-title {
     font-size: 20px;
   }
   .blog-card > p {
@@ -1675,7 +1679,7 @@ textarea {
   .demo-content {
     padding: 19px 12px;
   }
-  .demo-title h3 {
+  .demo-heading {
     font-size: 13px;
   }
   .demo-title small {
@@ -1818,7 +1822,7 @@ textarea {
     margin-top: 21px;
     font-size: 10px;
   }
-  .blog-card h3 {
+  .blog-card-title {
     font-size: 23px;
   }
   .blog-card > p {

@@ -9,6 +9,7 @@ interface Props {
 }
 const { locale, posts, standalone = false } = Astro.props;
 const c = getCopy(locale);
+const Title = standalone ? 'h2' : 'h3';
 ---
 
 <section class:list={['wrap', standalone ? 'blog-index-list' : 'section']}>
@@ -29,9 +30,9 @@ const c = getCopy(locale);
           href={`/${locale}/blog/${post.id}/`}
           class="blog-cover"
           tabindex="-1"
-          aria-hidden="true"
+          aria-label={post.data.title}
         >
-          <span class:list={['cover-art', `cover-${i % 3}`]}>
+          <span class:list={['cover-art', `cover-${i % 3}`]} aria-hidden="true">
             {i % 3 === 0 ? (
               <>
                 <span class="cover-shape shape-left"></span>
@@ -57,12 +58,12 @@ const c = getCopy(locale);
             {post.data.readTime} {c.common.minutes}
           </span>
         </div>
-        <h3>
+        <Title class="blog-card-title">
           <a href={`/${locale}/blog/${post.id}/`}>
             {post.data.title}
             <ArrowUpRight size={20} />
           </a>
-        </h3>
+        </Title>
         <p>{post.data.description}</p>
         <a class="text-link" href={`/${locale}/blog/${post.id}/`}>
           {c.common.read}

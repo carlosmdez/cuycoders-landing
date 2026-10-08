@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { gzipSync } from 'node:zlib';
 
 const root = resolve('dist');
 async function walk(dir) {
@@ -30,12 +31,34 @@ assert.equal(
   10,
   'Two homepages, two indexes and six articles',
 );
-const origin = process.env.SITE_URL;
+const origin = process.env.SITE_URL || 'https://cuycoders.com';
+const titles = new Set();
+function getAlternates(html) {
+  return new Map(
+    [...html.matchAll(/<link\b[^>]*>/g)]
+      .map(([tag]) => [
+        tag.match(/hreflang="([^"]+)"/)?.[1],
+        tag.match(/href="([^"]+)"/)?.[1],
+      ])
+      .filter(([lang, href]) => lang && href),
+  );
+}
 for (const [path, html] of localized) {
   const locale = path.split('/')[1];
   assert.match(html, new RegExp(`<html lang="${locale}"`));
   assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1, `${path}: one h1`);
   assert.match(html, /<meta name="description" content="[^"]+"/);
+  const title = html.match(/<title>(.*?)<\/title>/)?.[1];
+  assert.ok(title && !titles.has(title), `${path}: title must be unique`);
+  titles.add(title);
+  let previousLevel = 0;
+  for (const [, level] of html.matchAll(/<h([1-6])(?:\s|>)/g)) {
+    assert.ok(
+      Number(level) <= previousLevel + 1,
+      `${path}: skipped heading level`,
+    );
+    previousLevel = Number(level);
+  }
   for (const match of html.matchAll(/<a\b[^>]*href="([^"]+)"/g)) {
     const url = new URL(
       match[1].replaceAll('&amp;', '&'),
@@ -75,12 +98,64 @@ for (const [path, html] of localized) {
         html.includes(`hreflang="${lang}"`),
         `${path}: hreflang ${lang}`,
       );
+    const alternates = getAlternates(html);
+    assert.equal(
+      alternates.get(locale),
+      new URL(path, origin).href,
+      `${path}: self hreflang`,
+    );
+    assert.equal(
+      alternates.get('x-default'),
+      alternates.get('es'),
+      `${path}: Spanish fallback`,
+    );
+    for (const lang of ['es', 'en']) {
+      const target = new URL(alternates.get(lang));
+      assert.equal(
+        target.origin,
+        new URL(origin).origin,
+        `${path}: alternate origin`,
+      );
+      const targetPage = pages.get(target.pathname);
+      assert.ok(targetPage, `${path}: alternate must resolve`);
+      assert.deepEqual(
+        getAlternates(targetPage),
+        alternates,
+        `${path}: reciprocal language cluster`,
+      );
+    }
   }
+  assert.ok(
+    gzipSync(html).byteLength < 12 * 1024,
+    `${path}: compressed HTML budget`,
+  );
 }
 for (const locale of ['es', 'en']) {
   const home = pages.get(`/${locale}/`);
   assert.match(home, /type="submit" disabled/);
   assert.match(home, /<noscript>/);
+  assert.equal(
+    (home.match(/rel="preload"[^>]*as="font"/g) || []).length,
+    2,
+    `${locale}: two font preloads`,
+  );
+}
+const fonts = (await walk(resolve(root, '_astro'))).filter((file) =>
+  file.endsWith('.woff2'),
+);
+assert.equal(
+  fonts.length,
+  2,
+  'Ship only the two Latin variable font subsets required by ES/EN',
+);
+const styles = (await walk(resolve(root, '_astro'))).filter((file) =>
+  file.endsWith('.css'),
+);
+for (const file of styles) {
+  assert.ok(
+    gzipSync(await readFile(file)).byteLength < 12 * 1024,
+    'Compressed CSS budget',
+  );
 }
 const robots = await readFile(resolve(root, 'robots.txt'), 'utf8');
 assert.ok(robots.includes('Allow: /'));
@@ -94,5 +169,5 @@ if (origin) {
   assert.ok(robots.includes(new URL('sitemap-index.xml', origin).href));
 }
 console.log(
-  `Verified ${localized.length} localized pages: internal links, anchors, language switches, metadata, schema and safe demo forms${origin ? ', canonical/hreflang and sitemap' : ''}.`,
+  `Verified ${localized.length} localized pages: links, headings, unique titles, schema, demo forms, reciprocal canonical/hreflang, sitemap and font/HTML/CSS budgets.`,
 );

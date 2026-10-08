@@ -19,7 +19,11 @@ const posts = (
 
 <Layout
   locale={locale}
-  title={`Blog | Cuy Coders`}
+  title={
+    locale === 'es'
+      ? 'Blog de desarrollo de software | Cuy Coders'
+      : 'Software development insights | Cuy Coders'
+  }
   description={c.blog.description}
   alternatePath={`/${locale === 'es' ? 'en' : 'es'}/blog/`}
 >

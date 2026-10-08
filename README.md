@@ -25,7 +25,7 @@ npm run preview
 
 La salida estática está en `dist/`. La raíz redirige a `/es/`; el inglés está en `/en/`. En hosts estáticos, el redirect de la raíz es HTML con refresh; configura un redirect HTTP 301 en el hosting si lo necesitas.
 
-Antes de publicar, establece `SITE_URL` con el dominio real, por ejemplo en las variables del proceso de compilación. Esto habilita los enlaces canonical, hreflang, Open Graph URL y el sitemap. `robots.txt` incluye el sitemap únicamente cuando hay dominio configurado. No se asume un dominio de producción.
+El dominio de producción confirmado es `https://cuycoders.com`. La compilación genera canonical, hreflang, Open Graph URL y sitemap con ese origen. `SITE_URL` permite cambiarlo si el dominio de publicación cambia; debe contener únicamente el origen, sin subcarpetas. `robots.txt` incluye la ubicación del sitemap.
 
 ## Editar contenido
 

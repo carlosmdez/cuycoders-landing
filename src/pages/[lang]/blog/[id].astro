@@ -32,6 +32,11 @@ const schema = {
   inLanguage: locale,
   datePublished: post.data.published.toISOString(),
   author: { '@type': 'Organization', name: 'Cuy Coders' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Cuy Coders',
+    ...(Astro.site ? { url: Astro.site.href } : {}),
+  },
   ...(Astro.site
     ? { mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href }
     : {}),

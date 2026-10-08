@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
-const site = process.env.SITE_URL;
+const site = process.env.SITE_URL || 'https://cuycoders.com';
 export default defineConfig({
   output: 'static',
   site,
