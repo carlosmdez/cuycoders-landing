@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import { getCopy, type Locale } from '../../../i18n/content';
 import { ArrowLeft } from '@lucide/astro';
+import CuyMark from '../../../components/CuyMark.astro';
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map((post) => ({
@@ -65,7 +66,7 @@ const schema = {
       <h1>{post.data.title}</h1>
       <p class="article-deck">{post.data.description}</p>
       <div class="article-author">
-        <span class="author-mark">c.</span>
+        <CuyMark size={40} class="author-mark" />
         <span>
           Cuy Coders
           <br />

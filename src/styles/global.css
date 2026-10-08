@@ -237,18 +237,15 @@ textarea {
   font-weight: 800;
 }
 .cuy-mark {
-  clip-path: circle(50%);
-}
-.cuy-mark .brand-cuy {
+  display: block;
+  flex: none;
+  border-radius: 50%;
   transition: transform 260ms var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
-  .brand:hover .cuy-mark .brand-cuy {
-    transform: translateY(-2.5px);
+  .brand:hover .cuy-mark {
+    transform: rotate(-8deg) scale(1.05);
   }
-}
-.brand-dot {
-  color: var(--accent);
 }
 .desktop-nav {
   display: flex;
@@ -1786,16 +1783,7 @@ textarea {
   color: var(--muted);
 }
 .author-mark {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  background: var(--accent);
-  color: white;
-  border-radius: 10px;
-  font-size: 23px;
-  font-weight: 700;
-  font-family: var(--display);
+  flex: none;
 }
 .prose {
   max-width: 72ch;

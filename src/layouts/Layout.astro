@@ -36,7 +36,9 @@ const alternate = Astro.site ? new URL(alternatePath, Astro.site) : undefined;
     <script is:inline>
       document.documentElement.classList.add('js');
     </script>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link
       rel="preload"
       href={displayFont}
