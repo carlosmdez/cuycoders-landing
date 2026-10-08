@@ -15,7 +15,7 @@
 	header @immutable Cache-Control "public, max-age=31536000, immutable"
 	header ?Cache-Control "public, max-age=0, must-revalidate"
 
-	handle /healthz {
+	handle /health {
 		header Cache-Control "no-store"
 		respond "ok" 200
 	}

@@ -21,7 +21,7 @@ try {
   let ready = false;
   for (let attempt = 0; attempt < 50; attempt++) {
     try {
-      ready = (await fetch(`${base}/healthz`)).ok;
+      ready = (await fetch(`${base}/health`)).ok;
     } catch {}
     if (ready) break;
     await Bun.sleep(100);
@@ -67,7 +67,7 @@ try {
     asset.headers.get('cache-control'),
     /max-age=31536000, immutable/,
   );
-  const health = await fetch(`${base}/healthz`);
+  const health = await fetch(`${base}/health`);
   assert.equal(await health.text(), 'ok');
   assert.equal(health.headers.get('cache-control'), 'no-store');
   assert.equal((await fetch(`${base}/missing-page`)).status, 404);

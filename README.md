@@ -44,10 +44,10 @@ Los casos y las cifras de la vista de producto son ilustrativos. Sustitúyelos p
 
 ## Railway y Caddy
 
-El `Dockerfile` usa Bun 1.4.2 para instalar con lockfile congelado, comprobar y compilar. La imagen final contiene Caddy y `dist/`; no ejecuta Astro ni necesita Node.js. `.dockerignore` excluye dependencias locales, documentación y archivos de entorno.
+El `Dockerfile` usa Bun 1.4.2 para instalar con lockfile congelado y compilar. Las comprobaciones se ejecutan por separado. La imagen final contiene Caddy y `dist/`; no ejecuta Astro ni necesita Node.js. `.dockerignore` excluye dependencias locales, documentación y archivos de entorno.
 
 1. Crea un servicio Railway desde este repositorio, con la raíz del proyecto como **Root Directory**. Railway [detecta el Dockerfile](https://docs.railway.com/builds/dockerfiles); deja vacíos los overrides de build/start para usarlo.
-2. Configura **Healthcheck Path** como `/healthz`. Caddy escucha el `PORT` inyectado por Railway (3000 como alternativa local).
+2. Configura **Healthcheck Path** como `/health`. Caddy escucha el `PORT` inyectado por Railway (3000 como alternativa local).
 3. Añade `cuycoders.com` como dominio público y configura el DNS indicado por Railway. Si también añades `www.cuycoders.com`, Caddy lo redirige al dominio principal. Railway termina HTTPS delante de Caddy.
 4. `SITE_URL=https://cuycoders.com` es el valor de compilación predeterminado. Cambiarlo requiere recompilar para regenerar canonical y sitemap.
 5. Autoriza el dominio en Formserve y verifica la recepción de un mensaje real después del despliegue.
