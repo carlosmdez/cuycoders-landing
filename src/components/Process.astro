@@ -16,14 +16,14 @@ const copy = getCopy(locale);
   aria-labelledby="process-title"
 >
   <div class="wrap">
-    <div class="section-head" data-reveal>
+    <div class="section-head">
       <h2 id="process-title">{copy.process.title}</h2>
       <p class="section-intro">{copy.process.intro}</p>
     </div>
 
     <ol class="process-grid">
       {copy.process.steps.map((step, index) => (
-        <li class="process-step" data-reveal style={`--reveal-index: ${index}`}>
+        <li class="process-step">
           <span class="process-step-index" aria-hidden="true">
             {String(index + 1).padStart(2, '0')}
           </span>

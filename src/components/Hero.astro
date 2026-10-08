@@ -158,7 +158,7 @@ const strip = es
     </div>
   </div>
 </section>
-<div class="capability-strip" data-reveal>
+<div class="capability-strip">
   <div class="strip-marquee">
     <div class="strip-track">
       <ul class="strip-list">
@@ -206,7 +206,7 @@ const strip = es
     const sync = () => {
       stop();
       if (!reduce.matches && visible && !document.hidden) {
-        timer = window.setInterval(tick, 2400);
+        timer = window.setInterval(tick, 3600);
       }
     };
 

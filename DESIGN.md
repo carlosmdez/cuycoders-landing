@@ -17,6 +17,9 @@ colors:
   tint-sky: "#dce5e6"
   tint-lilac: "#e0e1ed"
   tint-sand: "#edece3"
+  cream: "#fff7ec"
+  apricot: "#ffe1b7"
+  sand-gold: "#d9bb91"
 typography:
   display:
     fontFamily: "Bricolage Grotesque Variable, sans-serif"
@@ -24,33 +27,161 @@ typography:
     fontWeight: 650
     lineHeight: 1.08
     letterSpacing: "-0.04em"
+  display-xl:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "68px"
+    fontWeight: 650
+    lineHeight: 1.08
+    letterSpacing: "-0.04em"
+  display-lg:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "49px"
+    fontWeight: 650
+    lineHeight: 1.08
+    letterSpacing: "-0.04em"
+  display-fluid:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "clamp(43px, 7.5vw, 60px)"
+    fontWeight: 650
+    lineHeight: 1.08
+    letterSpacing: "-0.04em"
+  display-sm:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "43px"
+    fontWeight: 650
+    lineHeight: 1.08
+    letterSpacing: "-0.04em"
+  page-title:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "clamp(35px, 4.6vw, 60px)"
+    fontWeight: 650
+    lineHeight: 1.1
+    letterSpacing: "-0.04em"
+  article-title:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "clamp(36px, 4.3vw, 56px)"
+    fontWeight: 650
+    lineHeight: 1.1
+    letterSpacing: "-0.04em"
+  contact-title:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "clamp(36px, 3.8vw, 50px)"
+    fontWeight: 650
+    lineHeight: 1.15
+    letterSpacing: "-0.035em"
   headline:
     fontFamily: "Bricolage Grotesque Variable, sans-serif"
     fontSize: "clamp(32px, 3.2vw, 44px)"
     fontWeight: 650
     lineHeight: 1.15
     letterSpacing: "-0.035em"
+  headline-md:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "36px"
+    fontWeight: 650
+    lineHeight: 1.15
+    letterSpacing: "-0.035em"
+  headline-sm:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "32px"
+    fontWeight: 650
+    lineHeight: 1.15
+    letterSpacing: "-0.035em"
+  success-title:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "clamp(28px, 3vw, 38px)"
+    fontWeight: 650
+    lineHeight: 1.15
+    letterSpacing: "-0.03em"
+  prose-h2:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "28px"
+    fontWeight: 650
+    lineHeight: 1.2
+    letterSpacing: "-0.03em"
   title:
     fontFamily: "Bricolage Grotesque Variable, sans-serif"
     fontSize: "22px"
     fontWeight: 650
     lineHeight: 1.15
     letterSpacing: "-0.025em"
+  title-sm:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "20px"
+    fontWeight: 650
+    lineHeight: 1.15
+    letterSpacing: "-0.02em"
+  wordmark:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "26px"
+    fontWeight: 650
+    lineHeight: 1.1
+    letterSpacing: "-0.02em"
+  numeral:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "88px"
+    fontWeight: 650
+    lineHeight: 1
+    letterSpacing: "-0.04em"
+  numeral-md:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "70px"
+    fontWeight: 650
+    lineHeight: 1
+    letterSpacing: "-0.04em"
+  numeral-sup:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "55px"
+    fontWeight: 650
+    lineHeight: 1
+    letterSpacing: "-0.04em"
+  numeral-sup-sm:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontSize: "40px"
+    fontWeight: 650
+    lineHeight: 1
+    letterSpacing: "-0.04em"
+  lead:
+    fontFamily: "Inter Tight Variable, sans-serif"
+    fontSize: "17px"
+    fontWeight: 400
+    lineHeight: 1.65
   body:
     fontFamily: "Inter Tight Variable, sans-serif"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.65
+  button:
+    fontFamily: "Inter Tight Variable, sans-serif"
+    fontSize: "15px"
+    fontWeight: 600
+    lineHeight: 1.2
+  ui:
+    fontFamily: "Inter Tight Variable, sans-serif"
+    fontSize: "14px"
+    fontWeight: 500
+    lineHeight: 1.5
+  sm:
+    fontFamily: "Inter Tight Variable, sans-serif"
+    fontSize: "13px"
+    fontWeight: 500
+    lineHeight: 1.5
   label:
     fontFamily: "Inter Tight Variable, sans-serif"
     fontSize: "12px"
     fontWeight: 600
     lineHeight: 1.4
+  code:
+    fontFamily: "ui-monospace, SF Mono, Menlo, Consolas, monospace"
+    fontSize: "13px"
+    fontWeight: 400
+    lineHeight: 1.7
 rounded:
-  tight: "5px"
+  tight: "4px"
   field: "6px"
   control: "8px"
   card: "12px"
+  pill: "999px"
 spacing:
   xs: "8px"
   sm: "12px"
@@ -63,18 +194,18 @@ components:
   button-primary:
     backgroundColor: "{colors.orange}"
     textColor: "#ffffff"
-    typography: "{typography.label}"
+    typography: "{typography.button}"
     rounded: "{rounded.control}"
     padding: "15px 25px"
     height: "54px"
   button-primary-hover:
     backgroundColor: "{colors.orange-hover}"
-  button-outline:
-    backgroundColor: "{colors.paper}"
+  button-pill:
+    backgroundColor: "{colors.tint-peach}"
     textColor: "{colors.ink}"
-    typography: "{typography.label}"
-    rounded: "{rounded.field}"
-    padding: "10px 17px"
+    typography: "{typography.ui}"
+    rounded: "{rounded.pill}"
+    padding: "7px 7px 7px 18px"
   input:
     backgroundColor: "#fbfaf5"
     textColor: "{colors.ink}"
@@ -120,12 +251,19 @@ The palette pairs a warm, slightly yellow paper base with charcoal text, one con
 ### Pastel Tint Scale
 Five quiet washes, exposed as `--tint-*` tokens, carry surfaces and small chips. Orange or muted text stays at 4.5:1 or better on all of them.
 - **Tint Sage** (`{colors.tint-sage}`): Contact section, hero backdrop, case and journal cover backgrounds.
-- **Tint Peach** (`{colors.tint-peach}`): Case tiles, journal covers, first service icon and process index chips, hero stat tile, and a 45% mix behind the About section.
-- **Tint Sky** (`{colors.tint-sky}`): Case tiles, second hero stat tile, and rotating chips.
-- **Tint Lilac** (`{colors.tint-lilac}`): Journal covers and rotating chips.
+- **Tint Peach** (`{colors.tint-peach}`): Case tiles, journal covers, the header "Hablemos" pill, a hero stat tile, and a 45% mix behind the About section. It also matches the logo badge background.
+- **Tint Sky** (`{colors.tint-sky}`): Case tiles and the second hero stat tile.
+- **Tint Lilac** (`{colors.tint-lilac}`): Journal covers.
 - **Tint Sand** (`{colors.tint-sand}`): Neutral warm surface for quiet panels.
 
-Service icons (44px, 10px radius) and process step indices (pill) rotate peach, sage, sky, lilac.
+Service icons and process step numbers stay plain accent-colored; tints are for surfaces, not icon chips.
+
+### Warm Accents
+- **Cream** (`{colors.cream}`): Text and numerals on the orange About note.
+- **Apricot** (`{colors.apricot}`): Checklist icons on the orange About note.
+- **Sand Gold** (`{colors.sand-gold}`): Headline emphasis and icons on the dark technology band.
+
+Illustrations (`src/styles/illustrations.css`) keep their own local clay, sage and blue-gray tones and micro type scale; they are drawn mockups, not UI.
 
 ### Neutral
 - **Warm Paper** (`{colors.paper}`): The page canvas and header/footer environment.
@@ -140,16 +278,33 @@ Service icons (44px, 10px radius) and process step indices (pill) rotate peach, 
 
 **Display Font:** Bricolage Grotesque Variable (with sans-serif fallback)  
 **Body Font:** Inter Tight Variable (with sans-serif fallback)  
-**Label/Mono Font:** Inter Tight Variable; no separate mono family is used.
+**Label Font:** Inter Tight Variable.  
+**Code Font:** the platform monospace stack (`ui-monospace, SF Mono, Menlo, Consolas`), used only inside the Services code-editor illustration.
 
 **Character:** Bricolage Grotesque is a warm, slightly quirky grotesque with character, giving headings a confident, human voice. Inter Tight is a compact, highly legible UI sans that keeps supporting copy and controls easy to scan without making the layout feel formal or technical.
 
 ### Hierarchy
-- **Display** (weight 650, `clamp(44px, 4.6vw, 65px)`, line-height 1.08): Hero heading; it tightens to 43px on small screens and reaches 68px at wide desktop sizes.
-- **Headline** (weight 650, `clamp(32px, 3.2vw, 44px)`, line-height 1.15): Section headings, usually limited to 560px for a controlled line length.
-- **Title** (weight 650, 22px, line-height 1.15): Card and subsection headings; selected component contexts use 19–20px.
-- **Body** (weight 400, 16px, line-height 1.65): Default text. Intro copy commonly uses 17px; long-form article text is 17px and constrained to 72ch.
-- **Label** (weight 600, 12px): Form labels and compact supporting information; navigation uses 14px and button text 15px.
+Every UI font size is a `--text-*` token in `:root` (src/styles/global.css) and a `typography` entry above. Drawn illustrations (src/styles/illustrations.css) keep their own micro scale and are intentionally outside this ramp.
+
+**Display and headings (Bricolage Grotesque, weight 650)**
+- **Display** (`--text-display`, `clamp(44px, 4.6vw, 65px)`): Hero heading. Steps: `--text-display-xl` 68px at 1440px+, `--text-display-lg` 49px at 1050px and below, `--text-display-fluid` `clamp(43px, 7.5vw, 60px)` at 800px and below, `--text-display-sm` 43px at 540px and below.
+- **Page and article titles**: `--text-page-title` `clamp(35px, 4.6vw, 60px)` (journal index), `--text-article-title` `clamp(36px, 4.3vw, 56px)` (article h1), `--text-contact-title` `clamp(36px, 3.8vw, 50px)`.
+- **Headline** (`--text-headline`, `clamp(32px, 3.2vw, 44px)`): Section headings. Phone steps: `--text-headline-md` 36px and `--text-headline-sm` 32px.
+- **Success title** (`--text-success-title`, `clamp(28px, 3vw, 38px)`): Contact confirmation heading.
+- **Prose h2** (`--text-prose-h2`, 28px): Article subheadings; the one deliberate step between headline and title.
+- **Title** (`--text-title`, 22px): Card and subsection headings. **Title small** (`--text-title-sm`, 20px): Service, technology and process headings, article deck.
+- **Wordmark** (`--text-wordmark`, 26px): The Cuy Coders brand text in the header.
+- **Numerals**: `--text-numeral` 88px (About years, 70px as `--text-numeral-md` on phones) with `--text-numeral-sup` 55px (40px as `--text-numeral-sup-sm`) for the suffix.
+
+**Text (Inter Tight)**
+- **Lead** (`--text-lead`, 17px): Section intros, hero copy, long-form article text (72ch).
+- **Body** (`--text-body`, 16px, line-height 1.65): Default text.
+- **Button** (`--text-button`, 15px, semibold): Buttons and inline text links.
+- **UI** (`--text-ui`, 14px): Navigation, card body and small interface text.
+- **Small** (`--text-sm`, 13px): Secondary links and compact descriptions.
+- **Label** (`--text-xs`, 12px, weight 600): Labels, captions, meta lines and the language switch. Former 9-11px sizes snap here.
+
+Stray sizes were snapped to the nearest step (19/21/23 to 20 or 22, 29 and 27 to 28, 31 to 32, 37 to 36).
 
 **The Balanced Heading Rule.** Headings use tight tracking and balanced wrapping; reserve the display face for headings and prominent numeric proof.
 
@@ -172,7 +327,14 @@ Depth is hybrid but restrained: section-to-section separation mostly comes from 
 
 ## Shapes
 
-Controls and containers use gently rounded corners: compact details fall around 4–7px, buttons use 8px, and larger cards use 9–12px. Field and card borders are quiet rather than decorative. The hero's sage backdrop is the signature departure from rectangles: a large rotated organic oval sits behind a slightly tilted dashboard, with a counter-rotated note. Other illustrations use simple circles, rounded windows, and soft geometric blocks.
+Corners come from a five-step scale exposed as `--radius-*` tokens, plus 50% for true circles (icon discs, avatars, dots):
+- **Tight** (`--radius-tight`, 4px): Small inline status details.
+- **Field** (`--radius-field`, 6px): Inputs, textareas and select controls.
+- **Control** (`--radius-control`, 8px): Buttons, the mobile menu panel and small controls.
+- **Card** (`--radius-card`, 12px): Case tiles, journal covers, the About note and other containers.
+- **Pill** (`--radius-pill`, 999px): The header CTA and rotating step chips.
+
+Field and card borders are quiet rather than decorative. The hero's sage backdrop is the signature departure from rectangles: a large rotated organic oval sits behind a slightly tilted dashboard, with a counter-rotated note. Drawn illustrations may use their own shapes (declared in illustrations.css) and are outside this scale.
 
 ## Components
 
@@ -181,7 +343,7 @@ Confident, compact actions use a warm fill and a small lift on hover.
 - **Shape:** Rounded rectangle (8px); 54px minimum height.
 - **Primary:** Orange fill and white text, with 15px 25px padding, 15px semibold type, and a 24px icon gap.
 - **Hover / Focus:** Hover deepens the orange and lifts by 2px over 200ms. Keyboard focus uses the shared 3px orange outline with 5px offset.
-- **Outline:** Header CTA uses a paper surface, muted 1px outline, 7px radius, and 10px 17px padding; hover adds a pale sage-gray fill.
+- **Pill (header CTA):** A peach pill (`--tint-peach` background, ink 14px semibold text, pill radius, 1px inset orange hairline at 18%) with 7px 7px 7px 18px padding and a 14px gap. It ends in a 30px orange disc holding a white arrow; on hover the pill mixes toward orange (18%) and the disc rotates 45deg and scales to 1.08. Pressing scales the pill to 0.97.
 - **Text action:** Inline links use semibold 15px text with a 12px icon gap; hover underlines with a 5px offset.
 
 ### Cards / Containers
@@ -199,7 +361,7 @@ The contact fields are understated and warm.
 
 ### Navigation
 Navigation stays light and directly attached to the page canvas.
-- **Desktop:** 108px header with a thin divider, 14px medium links, bilingual ES/EN switch, and outlined contact action.
+- **Desktop:** 108px header with a thin divider, 14px medium links, bilingual ES/EN switch, and the peach pill contact action.
 - **Hover / Focus:** Links shift to orange; all keyboard-operable elements receive the shared visible orange focus ring.
 - **Mobile:** At 800px, links and CTA collapse; a 44px square native disclosure control opens a 220px minimum-width paper menu with a light border, 8px corners, and a modest shadow.
 - **Footer:** Brand and links sit in a two-column row, followed by a full-width divider and copyright; at phone width the content stacks.

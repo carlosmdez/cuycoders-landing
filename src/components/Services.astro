@@ -42,10 +42,10 @@ const code = es
   aria-labelledby="services-title"
 >
   <div class="wrap">
-    <div class="section-head" data-reveal>
+    <div class="section-head">
       <h2 id="services-title">{copy.services.title}</h2>
       <p class="section-intro">{copy.services.intro}</p>
-      <div class="code-card" aria-hidden="true" data-reveal style="--reveal-index: 1">
+      <div class="code-card" aria-hidden="true">
         <div class="code-card-bar">
           <span></span><span></span><span></span>
           <b>{file}</b>
@@ -60,7 +60,7 @@ const code = es
 
     <ul class="services-list">
       {copy.services.items.map((service, index) => (
-        <li class="service-row" data-reveal style={`--reveal-index: ${index}`}>
+        <li class="service-row">
           <div class="service-copy">
             <h3>{service.title}</h3>
             <p>{service.description}</p>

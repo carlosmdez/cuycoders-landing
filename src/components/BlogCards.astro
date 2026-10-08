@@ -20,7 +20,7 @@ const Title = standalone ? 'h2' : 'h3';
 ---
 
 <section class:list={['wrap', standalone ? 'blog-index-list' : 'section']}>
-  <div class="section-head" data-reveal>
+  <div class="section-head">
     {!standalone && <h2>{c.blog.title}</h2>}
     <p class="section-intro">{c.blog.description}</p>
     {!standalone && (
@@ -32,7 +32,7 @@ const Title = standalone ? 'h2' : 'h3';
   </div>
   <div class="blog-grid">
     {posts.map((post, i) => (
-      <article class="blog-card" data-reveal style={`--reveal-index: ${i}`}>
+      <article class="blog-card">
         <a
           href={`/${locale}/blog/${post.id}/`}
           class="blog-cover"

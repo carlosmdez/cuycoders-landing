@@ -13,7 +13,7 @@ const es = locale === 'es';
 ---
 
 <section class="section wrap" id="casos">
-  <div class="section-head" data-reveal>
+  <div class="section-head">
     <h2>{c.cases.title}</h2>
     <p class="section-intro">{c.cases.intro}</p>
   </div>
@@ -21,8 +21,6 @@ const es = locale === 'es';
     {c.cases.items.map((item, i) => (
       <article
         class:list={['case-item', `case-${i}`]}
-        data-reveal
-        style={`--reveal-index: ${i}`}
       >
         <div class="case-visual" aria-hidden="true">
           {i === 0 ? (

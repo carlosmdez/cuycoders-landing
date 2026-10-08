@@ -1,0 +1,53 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "src/styles/global.css"
+        ],
+        "createdAt": "2026-10-08T21:52:44.751Z",
+        "reason": "User confirmed the logistics map street grid is intentional (it is an actual map surface)"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "src/styles/illustrations.css"
+        ],
+        "createdAt": "2026-10-08T21:53:59.242Z",
+        "reason": "Drawn mockups use their own micro scale; DESIGN.md ramp describes UI text"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "*",
+        "files": [
+          "src/styles/illustrations.css"
+        ],
+        "createdAt": "2026-10-08T21:53:59.274Z",
+        "reason": "Drawn mockups use their own micro scale; DESIGN.md ramp describes UI text"
+      },
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "src/styles/illustrations.css"
+        ],
+        "createdAt": "2026-10-08T21:53:59.309Z",
+        "reason": "User confirmed the logistics map street grid is intentional (it is an actual map surface)"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "src/styles/illustrations.css"
+        ],
+        "createdAt": "2026-10-08T21:56:03.221Z",
+        "reason": "User confirmed illustration mockups keep their own local clay/sage/blue-gray palette"
+      }
+    ]
+  }
+}
