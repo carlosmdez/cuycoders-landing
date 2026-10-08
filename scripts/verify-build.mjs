@@ -132,8 +132,14 @@ for (const [path, html] of localized) {
 }
 for (const locale of ['es', 'en']) {
   const home = pages.get(`/${locale}/`);
-  assert.match(home, /type="submit" disabled/);
-  assert.match(home, /<noscript>/);
+  assert.match(home, /action="https:\/\/formserve.io\/f\/rvcKqtYUGPA"/);
+  assert.match(home, /method="POST"/);
+  assert.doesNotMatch(
+    home,
+    /Probar formulario|Try demo form|contact-demo-notice/,
+  );
+  assert.match(home, /name="_honeypot"/);
+  assert.match(home, /data-contact-success/);
   assert.equal(
     (home.match(/rel="preload"[^>]*as="font"/g) || []).length,
     2,
@@ -169,5 +175,5 @@ if (origin) {
   assert.ok(robots.includes(new URL('sitemap-index.xml', origin).href));
 }
 console.log(
-  `Verified ${localized.length} localized pages: links, headings, unique titles, schema, demo forms, reciprocal canonical/hreflang, sitemap and font/HTML/CSS budgets.`,
+  `Verified ${localized.length} localized pages: links, headings, unique titles, schema, Formserve forms, reciprocal canonical/hreflang, sitemap and font/HTML/CSS budgets.`,
 );

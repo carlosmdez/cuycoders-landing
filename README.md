@@ -18,6 +18,7 @@ npm run astro -- dev stop
 
 ```sh
 npm run check
+npm run test:seo
 npm run build
 npm run verify:build
 npm run preview
@@ -35,7 +36,8 @@ El dominio de producción confirmado es `https://cuycoders.com`. La compilación
 - `src/content.config.ts`: validación del contenido del blog.
 - `src/styles/global.css`: tokens y diseño adaptable; tipografías alojadas localmente.
 - `PRODUCT.md` y `DESIGN.md`: contexto de producto y sistema visual.
+- `docs/seo-audit-2026-10-08.md`: auditoría SEO, resultados de Lighthouse y pendientes del hosting.
 
-El formulario es una demostración: valida los campos y muestra una confirmación local sin enviar ni guardar datos. Sin JavaScript, el botón permanece deshabilitado. Para recibir mensajes, conecta un servicio y actualiza el aviso; el correo de contacto real está pendiente.
+El formulario envía a `https://formserve.io/f/rvcKqtYUGPA` mediante Formserve. Con JavaScript muestra una tarjeta de agradecimiento animada solo tras confirmar el envío; conserva los datos ante errores y evita envíos simultáneos. Sin JavaScript usa POST HTML. En Formserve, autoriza `cuycoders.com` y los orígenes locales que utilices (por ejemplo `localhost:4321`); revisa las notificaciones del endpoint.
 
 Los casos y las cifras de la vista de producto son ilustrativos. Sustitúyelos por casos documentados cuando estén disponibles. La marca tiene un pequeño símbolo de cuy; los gráficos geométricos pueden reemplazarse por imágenes de marca.

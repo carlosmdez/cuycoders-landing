@@ -1,5 +1,5 @@
 ---
-import { ArrowUpRight } from '@lucide/astro';
+import { ArrowUpRight, ChevronDown, CircleCheck } from '@lucide/astro';
 import { getCopy, type Locale } from '../i18n/content';
 
 interface Props {
@@ -9,12 +9,6 @@ interface Props {
 const { locale } = Astro.props;
 const copy = getCopy(locale);
 const isSpanish = locale === 'es';
-const demoNotice = isSpanish
-  ? 'Vista previa: este formulario no envía mensajes. No se guardan los datos que escribas.'
-  : 'Preview: this form does not send messages. The details you enter are not saved.';
-const localSuccess = isSpanish
-  ? 'Es una demostración local: no se envió ningún mensaje.'
-  : 'This is a local demo; no message was sent.';
 const placeholders = isSpanish
   ? {
       name: 'Tu nombre',
@@ -44,99 +38,107 @@ const placeholders = isSpanish
         </div>
       </div>
 
-      <form
-        class="contact-form"
-        data-contact-form
-        data-success={localSuccess}
-        aria-describedby="contact-demo-notice"
-        novalidate={false}
-      >
-        <p class="form-note" id="contact-demo-notice">
-          {demoNotice}
-        </p>
+      <div class="contact-card" data-contact-card>
+        <div class="contact-card-inner">
+          <form
+            class="contact-form"
+            data-contact-form
+            action="https://formserve.io/f/rvcKqtYUGPA"
+            method="POST"
+            data-sending={copy.contact.sending}
+            data-error={copy.contact.error}
+          >
+            <input type="hidden" name="language" value={locale} />
+            <input type="hidden" name="_fs_loaded_at" data-loaded-at />
+            <input
+              class="form-honeypot"
+              type="text"
+              name="_honeypot"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
 
-        <div class="field">
-          <label for="contact-name">{copy.contact.name}</label>
-          <input
-            id="contact-name"
-            name="name"
-            type="text"
-            autocomplete="name"
-            placeholder={placeholders.name}
-            required
-          />
+            <div class="field">
+              <label for="contact-name">{copy.contact.name}</label>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                placeholder={placeholders.name}
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="contact-email">{copy.contact.email}</label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder={placeholders.email}
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="contact-service">{copy.contact.service}</label>
+              <div class="select-wrap">
+                <select id="contact-service" name="service" required>
+                  <option value="" disabled selected>
+                    {placeholders.service}
+                  </option>
+                  {copy.contact.services.map((service) => (
+                    <option value={service}>{service}</option>
+                  ))}
+                </select>
+                <ChevronDown size={18} stroke-width={1.8} aria-hidden="true" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="contact-message">{copy.contact.message}</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="4"
+                placeholder={placeholders.message}
+                required
+              ></textarea>
+            </div>
+
+            <button class="button button-primary" type="submit">
+              <span data-submit-label>{copy.contact.button}</span>
+              <ArrowUpRight size={18} stroke-width={1.8} aria-hidden="true" />
+            </button>
+            <p
+              class="form-note"
+              role="status"
+              aria-live="polite"
+              data-contact-status
+            ></p>
+          </form>
+          <div
+            class="contact-success"
+            data-contact-success
+            hidden
+            tabindex="-1"
+            role="status"
+            aria-labelledby="contact-success-title"
+          >
+            <CircleCheck size={48} stroke-width={1.5} aria-hidden="true" />
+            <h3 id="contact-success-title">{copy.contact.successTitle}</h3>
+            <p>{copy.contact.success}</p>
+          </div>
         </div>
-
-        <div class="field">
-          <label for="contact-email">{copy.contact.email}</label>
-          <input
-            id="contact-email"
-            name="email"
-            type="email"
-            autocomplete="email"
-            placeholder={placeholders.email}
-            required
-          />
-        </div>
-
-        <div class="field">
-          <label for="contact-service">{copy.contact.service}</label>
-          <select id="contact-service" name="service" required>
-            <option value="" disabled selected>
-              {placeholders.service}
-            </option>
-            {copy.contact.services.map((service) => (
-              <option value={service}>{service}</option>
-            ))}
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="contact-message">{copy.contact.message}</label>
-          <textarea
-            id="contact-message"
-            name="message"
-            rows="4"
-            placeholder={placeholders.message}
-            required
-          ></textarea>
-        </div>
-
-        <button class="button button-primary" type="submit" disabled>
-          {isSpanish ? 'Probar formulario' : 'Try demo form'}
-          <ArrowUpRight size={18} stroke-width={1.8} aria-hidden="true" />
-        </button>
-        <p
-          class="form-note"
-          role="status"
-          aria-live="polite"
-          data-contact-status
-        ></p>
-        <noscript>
-          {isSpanish
-            ? 'Activa JavaScript para probar esta demostración. El formulario no envía mensajes.'
-            : 'Enable JavaScript to try this demo. The form does not send messages.'}
-        </noscript>
-      </form>
+      </div>
     </div>
   </div>
 </section>
 
 <script>
-  document
-    .querySelectorAll<HTMLFormElement>('[data-contact-form]')
-    .forEach((form) => {
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        if (!form.reportValidity()) return;
-
-        const status = form.querySelector<HTMLElement>('[data-contact-status]');
-        if (status) status.textContent = form.dataset.success ?? '';
-      });
-      const button = form.querySelector<HTMLButtonElement>(
-        'button[type="submit"]',
-      );
-      if (button) button.disabled = false;
-    });
+  import { initContactForms } from '../lib/contact-form';
+  initContactForms();
 </script>

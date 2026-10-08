@@ -363,7 +363,7 @@ textarea {
 .hero-art::before {
   content: '';
   position: absolute;
-  inset: 25px -23px 5px;
+  inset: 25px 0 5px;
   background: #e9ede1;
   border-radius: 48% 45% 44% 48%;
   z-index: -1;
@@ -1272,7 +1272,7 @@ textarea {
   gap: 22px;
 }
 .contact-form > .form-note,
-.field:nth-of-type(n + 3),
+.contact-form > .field:nth-of-type(n + 3),
 .contact-form > .button {
   grid-column: 1/-1;
 }
@@ -1321,9 +1321,101 @@ textarea {
   color: #364d29;
   border-radius: 5px;
 }
-.contact-form noscript {
-  grid-column: 1/-1;
-  font-size: 13px;
+/* The form keeps its layout while its confirmation turns into view. */
+.contact-card {
+  perspective: 1200px;
+}
+.contact-card-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 280ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+.contact-card.is-sent .contact-card-inner {
+  transform: rotateY(180deg);
+}
+.contact-form,
+.contact-success {
+  backface-visibility: hidden;
+}
+.contact-success {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 22px;
+  padding: 32px;
+  background: #e4e8dc;
+  border-radius: 12px;
+}
+.contact-success[hidden] {
+  display: none;
+}
+.contact-success > svg {
+  color: #364d29;
+}
+.contact-success h3 {
+  font-size: clamp(28px, 3vw, 38px);
+}
+.contact-success p {
+  max-width: 38ch;
+  line-height: 1.7;
+}
+.contact-success:focus {
+  outline: none;
+}
+.form-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.select-wrap {
+  position: relative;
+}
+.select-wrap select {
+  appearance: none;
+  padding-right: 46px;
+}
+.select-wrap > svg {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #606957;
+}
+.contact-form .button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-card-inner {
+    transition: none;
+  }
+  .contact-card.is-sent .contact-card-inner {
+    transform: none;
+  }
+  .contact-card.is-sent .contact-form {
+    visibility: hidden;
+  }
+  .contact-success {
+    transform: none;
+    animation: contact-fade 180ms ease;
+  }
+}
+@keyframes contact-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .site-footer {
   display: grid;
@@ -1378,7 +1470,7 @@ textarea {
     min-height: 440px;
   }
   .hero-art::before {
-    inset: 30px -8px 15px;
+    inset: 30px 0 15px;
   }
   .hero-copy > p {
     font-size: 15px;

@@ -13,7 +13,7 @@
     "check": "astro check",
     "format": "prettier --write src astro.config.mjs",
     "verify:build": "node scripts/verify-build.mjs",
-    "test:seo": "node --test scripts/seo.test.mjs"
+    "test:seo": "node --experimental-strip-types --test scripts/seo.test.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",

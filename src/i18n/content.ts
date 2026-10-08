@@ -130,9 +130,13 @@ const copy = {
       email: 'Correo electrónico',
       service: '¿Qué tipo de proyecto tienes en mente?',
       message: 'Cuéntanos un poco más',
-      button: 'Probar formulario',
-      note: 'Demostración: este formulario no envía mensajes.',
-      success: 'Demostración local: no se envió ningún mensaje.',
+      button: 'Enviar mensaje',
+      sending: 'Enviando…',
+      error:
+        'No pudimos confirmar el envío. Revisa tu conexión e inténtalo de nuevo.',
+      successTitle: '¡Gracias por escribirnos!',
+      success:
+        'Recibimos tu mensaje. Nos pondremos en contacto contigo en breve para conversar sobre tu proyecto.',
       services: [
         'Desarrollo web',
         'App para Android o iOS',
@@ -284,9 +288,13 @@ const copy = {
       email: 'Email address',
       service: 'What kind of project do you have in mind?',
       message: 'Tell us a little more',
-      button: 'Try demo form',
-      note: 'Demo: this form does not send messages.',
-      success: 'Local demo: no message was sent.',
+      button: 'Send message',
+      sending: 'Sending…',
+      error:
+        'We couldn’t confirm your submission. Check your connection and try again.',
+      successTitle: 'Thank you for reaching out!',
+      success:
+        'We’ve received your message. We’ll contact you shortly to talk about your project.',
       services: [
         'Web development',
         'Android or iOS app',
