@@ -1,46 +1,41 @@
-# Astro Starter Kit: Basics
+# Cuy Coders
+
+Sitio de software a la medida construido con Astro, Tailwind CSS v4 y Lucide. Genera HTML estático: no necesita un servidor de aplicación.
+
+## Desarrollo
+
+Requiere Node.js 22.12 o posterior.
 
 ```sh
-bun create astro@latest -- --template basics
+npm install
+npm run dev -- --background
+npm run astro -- dev status
+npm run astro -- dev logs
+npm run astro -- dev stop
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Verificar y compilar
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```sh
+npm run check
+npm run build
+npm run verify:build
+npm run preview
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+La salida estática está en `dist/`. La raíz redirige a `/es/`; el inglés está en `/en/`. En hosts estáticos, el redirect de la raíz es HTML con refresh; configura un redirect HTTP 301 en el hosting si lo necesitas.
 
-## 🧞 Commands
+Antes de publicar, establece `SITE_URL` con el dominio real, por ejemplo en las variables del proceso de compilación. Esto habilita los enlaces canonical, hreflang, Open Graph URL y el sitemap. `robots.txt` incluye el sitemap únicamente cuando hay dominio configurado. No se asume un dominio de producción.
 
-All commands are run from the root of the project, from a terminal:
+## Editar contenido
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+- `src/i18n/content.ts`: textos compartidos en español e inglés.
+- `src/components/`: secciones con una responsabilidad cada una.
+- `src/content/blog/`: artículos Markdown. `translationKey` enlaza versiones equivalentes.
+- `src/content.config.ts`: validación del contenido del blog.
+- `src/styles/global.css`: tokens y diseño adaptable; tipografías alojadas localmente.
+- `PRODUCT.md` y `DESIGN.md`: contexto de producto y sistema visual.
 
-## 👀 Want to learn more?
+El formulario es una demostración: valida los campos y muestra una confirmación local sin enviar ni guardar datos. Sin JavaScript, el botón permanece deshabilitado. Para recibir mensajes, conecta un servicio y actualiza el aviso; el correo de contacto real está pendiente.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Los casos y las cifras de la vista de producto son ilustrativos. Sustitúyelos por casos documentados cuando estén disponibles. La marca tiene un pequeño símbolo de cuy; los gráficos geométricos pueden reemplazarse por imágenes de marca.

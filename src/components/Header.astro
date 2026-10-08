@@ -1,0 +1,73 @@
+---
+import Brand from './Brand.astro';
+import { ArrowUpRight, Menu } from '@lucide/astro';
+import { getCopy, type Locale } from '../i18n/content';
+interface Props {
+  locale: Locale;
+  alternatePath?: string;
+}
+const { locale, alternatePath = `/${locale === 'es' ? 'en' : 'es'}/` } =
+  Astro.props;
+const c = getCopy(locale);
+---
+
+<header class="site-header wrap">
+  <Brand href={`/${locale}/`} />
+  <nav
+    class="desktop-nav"
+    aria-label={locale === 'es' ? 'Navegación principal' : 'Main navigation'}
+  >
+    {c.nav.slice(0, 4).map((n) => (
+      <a href={n.href.startsWith('#') ? `/${locale}/${n.href}` : n.href}>
+        {n.label}
+      </a>
+    ))}
+  </nav>
+  <div class="header-actions">
+    <a
+      class="language"
+      href={alternatePath}
+      lang={locale === 'es' ? 'en' : 'es'}
+      aria-label={
+        locale === 'es'
+          ? 'Read this page in English'
+          : 'Leer esta página en español'
+      }
+    >
+      <span class:list={{ selected: locale === 'es' }}>ES</span>
+      <span aria-hidden="true">/</span>
+      <span class:list={{ selected: locale === 'en' }}>EN</span>
+    </a>
+    <a class="header-cta" href={`/${locale}/#contacto`}>
+      {locale === 'es' ? 'Hablemos' : 'Let’s talk'}
+      <ArrowUpRight size={17} />
+    </a>
+  </div>
+  <details class="mobile-menu">
+    <summary aria-label={c.common.menu}>
+      <Menu size={24} />
+    </summary>
+    <nav aria-label={c.common.menu}>
+      {c.nav.map((n) => (
+        <a href={n.href.startsWith('#') ? `/${locale}/${n.href}` : n.href}>
+          {n.label}
+        </a>
+      ))}
+    </nav>
+  </details>
+</header>
+
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu.open = false;
+    });
+  });
+  menu?.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      menu.open = false;
+      menu.querySelector('summary')?.focus();
+    }
+  });
+</script>

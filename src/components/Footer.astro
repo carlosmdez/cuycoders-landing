@@ -1,0 +1,21 @@
+---
+import Brand from './Brand.astro';
+import { getCopy, type Locale } from '../i18n/content';
+const { locale } = Astro.props as { locale: Locale };
+const c = getCopy(locale);
+---
+
+<footer class="site-footer wrap">
+  <div>
+    <Brand href={`/${locale}/`} />
+    <p>{c.footer.tagline}</p>
+  </div>
+  <div class="footer-links">
+    <a href={`/${locale}/#servicios`}>{c.nav[0].label}</a>
+    <a href={`/${locale}/blog/`}>Blog</a>
+    <a href={`/${locale}/#contacto`}>{c.nav[4].label}</a>
+  </div>
+  <p class="copyright">
+    © {new Date().getFullYear()} Cuy Coders. {c.footer.rights}
+  </p>
+</footer>

@@ -1,0 +1,167 @@
+---
+import {
+  ArrowUpRight,
+  ArrowDown,
+  Check,
+  LayoutDashboard,
+  Boxes,
+  Users,
+  Settings,
+  Plus,
+  Ellipsis,
+  CodeXml,
+  Sparkles,
+  TrendingUp,
+} from '@lucide/astro';
+import { getCopy, type Locale } from '../i18n/content';
+const { locale } = Astro.props as { locale: Locale };
+const c = getCopy(locale);
+const es = locale === 'es';
+---
+
+<section class="hero wrap">
+  <div class="hero-copy">
+    <h1>
+      {c.hero.title}
+      <br />
+      <span>{c.hero.accent}</span>
+    </h1>
+    <p>{c.hero.description}</p>
+    <a href="#contacto" class="button button-primary">
+      {c.hero.primary}
+      <ArrowUpRight size={20} />
+    </a>
+    <a href="#servicios" class="hero-secondary">
+      {c.hero.secondary}
+      <ArrowDown size={16} />
+    </a>
+    <div class="hero-proof">
+      <span class="proof-avatars" aria-hidden="true">
+        <span>CC</span>
+        <span>
+          <CodeXml size={18} />
+        </span>
+        <span>
+          <Sparkles size={18} />
+        </span>
+      </span>
+      <p>
+        <strong>{es ? 'Más de 8 años' : 'Over 8 years'}</strong>
+        <br />
+        {es
+          ? 'convirtiendo ideas en soluciones.'
+          : 'turning ideas into solutions.'}
+      </p>
+    </div>
+  </div>
+  <div class="hero-art">
+    <div class="orbit-label">
+      <span class="status-dot"></span>
+      {es
+        ? 'Tu próximo gran proyecto empieza aquí'
+        : 'Your next great project starts here'}
+    </div>
+    <div class="product-demo">
+      <div class="demo-top">
+        <span class="demo-logo">c.</span>
+        <strong>{es ? 'Mi espacio de trabajo' : 'My workspace'}</strong>
+        <Ellipsis size={20} />
+      </div>
+      <div class="demo-body">
+        <aside class="demo-sidebar" aria-hidden="true">
+          <LayoutDashboard size={19} />
+          <Boxes size={19} />
+          <Users size={19} />
+          <Settings size={19} />
+        </aside>
+        <div class="demo-content">
+          <div class="demo-title">
+            <div>
+              <small>
+                {es ? 'Todo en su lugar' : 'Everything in its place'}
+              </small>
+              <h3>
+                {es ? 'Tu negocio, conectado.' : 'Your business, connected.'}
+              </h3>
+            </div>
+            <span class="demo-plus">
+              <Plus size={17} />
+            </span>
+          </div>
+          <div class="demo-stats">
+            <div>
+              <small>{es ? 'Proyectos activos' : 'Active projects'}</small>
+              <strong>
+                12 <TrendingUp size={17} />
+              </strong>
+            </div>
+            <div>
+              <small>{es ? 'Tareas completadas' : 'Tasks completed'}</small>
+              <strong>
+                84 <TrendingUp size={17} />
+              </strong>
+            </div>
+          </div>
+          <div class="demo-project">
+            <span class="project-initial">W</span>
+            <div>
+              <strong>{es ? 'Plataforma web' : 'Web platform'}</strong>
+              <small>
+                {es ? 'Diseño y desarrollo' : 'Design & development'}
+              </small>
+            </div>
+            <span class="demo-badge">{es ? 'En marcha' : 'In progress'}</span>
+          </div>
+          <div class="demo-chart" aria-hidden="true">
+            {[34, 51, 43, 67, 59, 80, 73, 94, 85, 100].map((h, i) => (
+              <span style={`--bar-height:${h}%;--bar-index:${i}`}></span>
+            ))}
+          </div>
+          <div class="demo-chart-label">
+            <span>
+              {es
+                ? 'El progreso se construye, paso a paso.'
+                : 'Progress is built, step by step.'}
+            </span>
+            <TrendingUp size={16} />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="floating-note">
+      <span>
+        <Check size={19} />
+      </span>
+      <div>
+        <strong>{es ? 'Hecho a tu medida' : 'Made for you'}</strong>
+        <small>
+          {es ? 'Tu idea. Nuestro compromiso.' : 'Your idea. Our commitment.'}
+        </small>
+      </div>
+    </div>
+    <p class="demo-caption">
+      {es
+        ? 'Vista conceptual · Datos ilustrativos'
+        : 'Concept view · Illustrative data'}
+    </p>
+    <div class="art-code" aria-hidden="true">
+      &lt;/&gt;
+    </div>
+  </div>
+</section>
+<div class="capability-strip">
+  <div class="wrap">
+    <span>
+      {es ? 'Una idea. Muchas posibilidades.' : 'One idea. Many possibilities.'}
+    </span>
+    <strong>Web</strong>
+    <span class="strip-dot"></span>
+    <strong>Android & iOS</strong>
+    <span class="strip-dot"></span>
+    <strong>SaaS</strong>
+    <span class="strip-dot"></span>
+    <strong>
+      {es ? 'Inteligencia artificial' : 'Artificial intelligence'}
+    </strong>
+  </div>
+</div>

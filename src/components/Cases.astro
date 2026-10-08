@@ -1,0 +1,73 @@
+---
+import {
+  ArrowUpRight,
+  Truck,
+  Layers,
+  Smartphone,
+  Check,
+  MapPin,
+} from '@lucide/astro';
+import { getCopy, type Locale } from '../i18n/content';
+const { locale } = Astro.props as { locale: Locale };
+const c = getCopy(locale);
+const es = locale === 'es';
+---
+
+<section class="section wrap" id="casos">
+  <div class="section-head">
+    <h2>{c.cases.title}</h2>
+    <p class="section-intro">{c.cases.intro}</p>
+  </div>
+  <div class="cases-grid">
+    {c.cases.items.map((item, i) => (
+      <article class:list={['case-item', `case-${i}`]}>
+        <div class="case-visual" aria-hidden="true">
+          {i === 0 ? (
+            <div class="logistics-art">
+              <Truck size={34} />
+              <span class="route-line"></span>
+              <span class="route-point">
+                <MapPin size={22} />
+              </span>
+              <div class="route-label">
+                {es ? 'Todo conectado' : 'All connected'}
+                <Check size={15} />
+              </div>
+            </div>
+          ) : i === 1 ? (
+            <div class="saas-art">
+              <Layers size={34} />
+              <div class="saas-window">
+                <span></span>
+                <span></span>
+                <span></span>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          ) : (
+            <div class="mobile-art">
+              <div class="phone">
+                <span class="phone-notch"></span>
+                <Smartphone size={25} />
+                <span class="phone-line"></span>
+                <span class="phone-line short"></span>
+                <span class="phone-action">
+                  <Check size={18} />
+                </span>
+              </div>
+              <div class="phone-chip">Android + iOS</div>
+            </div>
+          )}
+        </div>
+        <p class="case-category">{item.category}</p>
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+        <a class="text-link" href="#contacto">
+          {es ? 'Hablemos de tu caso' : 'Let’s discuss your use case'}
+          <ArrowUpRight size={17} />
+        </a>
+      </article>
+    ))}
+  </div>
+</section>

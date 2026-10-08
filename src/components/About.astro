@@ -1,0 +1,54 @@
+---
+import { ArrowUpRight, Check } from '@lucide/astro';
+import { getCopy, type Locale } from '../i18n/content';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getCopy(locale);
+---
+
+<section
+  id="nosotros"
+  class="section about-section"
+  aria-labelledby="about-title"
+>
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-story">
+        <div class="section-head">
+          <h2 id="about-title">{copy.about.title}</h2>
+        </div>
+        <p class="about-body">{copy.about.body}</p>
+        <a class="text-link" href="#contacto">
+          {copy.hero.primary}
+          <ArrowUpRight size={18} stroke-width={1.8} aria-hidden="true" />
+        </a>
+      </div>
+
+      <aside
+        class="about-note"
+        aria-label={locale === 'es' ? 'Experiencia' : 'Experience'}
+      >
+        <p class="about-years">
+          8<span>+</span>
+        </p>
+        <p class="about-years-label">
+          {locale === 'es'
+            ? 'años creando software'
+            : 'years building software'}
+        </p>
+        <ul class="checklist">
+          {copy.about.points.map((point) => (
+            <li>
+              <Check size={19} stroke-width={2} aria-hidden="true" />
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import Services from '../../components/Services.astro';
+import About from '../../components/About.astro';
+import Process from '../../components/Process.astro';
+import Cases from '../../components/Cases.astro';
+import Technology from '../../components/Technology.astro';
+import Contact from '../../components/Contact.astro';
+import BlogCards from '../../components/BlogCards.astro';
+import { locales, type Locale } from '../../i18n/content';
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+const locale = Astro.params.lang as Locale;
+const posts = (
+  await getCollection('blog', (p) => p.data.locale === locale)
+).sort(
+  (a, b) =>
+    b.data.published.getTime() - a.data.published.getTime() ||
+    a.data.translationKey.localeCompare(b.data.translationKey),
+);
+const title =
+  locale === 'es'
+    ? 'Cuy Coders | Desarrollo de software a la medida'
+    : 'Cuy Coders | Custom software development';
+const description =
+  locale === 'es'
+    ? 'Desarrollamos aplicaciones web, Android, iOS, SaaS y software empresarial a la medida. Más de ocho años de experiencia, calidad continua y precios transparentes.'
+    : 'Custom web applications, Android and iOS apps, SaaS and enterprise software. Over eight years of experience, ongoing quality reviews and transparent pricing.';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Cuy Coders',
+  description,
+  ...(Astro.site ? { url: Astro.site.href } : {}),
+  knowsAbout: [
+    'Custom software development',
+    'Web development',
+    'Android',
+    'iOS',
+    'SaaS',
+    'Artificial intelligence',
+  ],
+};
+---
+
+<Layout locale={locale} title={title} description={description} schema={schema}>
+  <Hero locale={locale} />
+  <Services locale={locale} />
+  <About locale={locale} />
+  <Cases locale={locale} />
+  <Process locale={locale} />
+  <Technology locale={locale} />
+  <BlogCards locale={locale} posts={posts} />
+  <Contact locale={locale} />
+</Layout>

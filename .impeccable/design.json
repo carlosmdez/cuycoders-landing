@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-08T00:00:00.000Z",
+  "title": "Design System: Cuy Coders",
+  "extensions": {
+    "colorMeta": {
+      "orange": {
+        "role": "primary",
+        "displayName": "Burnt Orange",
+        "canonical": "#bb4724",
+        "tonalRamp": ["#42170d", "#622312", "#823018", "#a33c1f", "#c14825", "#d96d47", "#e99d83", "#f8ded5"]
+      },
+      "orange-hover": {
+        "role": "primary",
+        "displayName": "Deep Orange",
+        "canonical": "#953817",
+        "tonalRamp": ["#351408", "#501e0d", "#6b280f", "#863212", "#a13c15", "#c36641", "#dc9980", "#f3dcd2"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "#f8f6f0",
+        "tonalRamp": ["#38372f", "#555349", "#727066", "#908e83", "#adaba0", "#c4c2b7", "#dedbd0", "#f8f6f0"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Charcoal Ink",
+        "canonical": "#242923",
+        "tonalRamp": ["#0d100d", "#171b17", "#222722", "#2d332d", "#393f39", "#575d57", "#818780", "#c7cbc5"]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Quiet Gray-Green",
+        "canonical": "#63675f",
+        "tonalRamp": ["#1b1e19", "#2a2e27", "#393d35", "#494d44", "#595d53", "#6d7167", "#92968b", "#c7c9c2"]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Soft Divider",
+        "canonical": "#dddcd4",
+        "tonalRamp": ["#292923", "#414139", "#5a5a51", "#74746b", "#8e8e85", "#a9a99f", "#c4c4bb", "#e0dfd8"]
+      },
+      "sage-wash": {
+        "role": "secondary",
+        "displayName": "Sage Wash",
+        "canonical": "#edece3",
+        "tonalRamp": ["#282a23", "#404239", "#595b51", "#73756b", "#8d8f84", "#a9aa9f", "#c5c6bb", "#edece3"]
+      },
+      "sage-deep": {
+        "role": "secondary",
+        "displayName": "Deep Studio Sage",
+        "canonical": "#293b32",
+        "tonalRamp": ["#101813", "#18251e", "#213128", "#293d32", "#3d5448", "#62776b", "#91a198", "#c8d0ca"]
+      },
+      "sage-light": {
+        "role": "secondary",
+        "displayName": "Soft Sage",
+        "canonical": "#e9ede1",
+        "tonalRamp": ["#262a20", "#3e4434", "#575e49", "#717962", "#8b947c", "#a7af99", "#c3cbb6", "#e9ede1"]
+      },
+      "cream-white": {
+        "role": "neutral",
+        "displayName": "Cream White",
+        "canonical": "#fffefa",
+        "tonalRamp": ["#38372d", "#565448", "#747165", "#928f83", "#b0ada1", "#c8c5b9", "#e2dfd3", "#fffefa"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Manrope Display", "purpose": "Hero headlines and prominent numeric proof." },
+      "headline": { "displayName": "Manrope Headline", "purpose": "Section headings." },
+      "title": { "displayName": "Manrope Title", "purpose": "Card and subsection headings." },
+      "body": { "displayName": "DM Sans Body", "purpose": "Paragraphs and long-form reading." },
+      "label": { "displayName": "DM Sans Label", "purpose": "Form labels and compact controls." }
+    },
+    "shadows": [
+      { "name": "dashboard", "value": "0 28px 42px -20px #2e3e3333", "purpose": "Softly lifts the hero dashboard from its sage backdrop." },
+      { "name": "floating-note", "value": "0 10px 26px -9px #313c3a26", "purpose": "Separates the overlapping hero callout." },
+      { "name": "compact-illustration", "value": "0 12px 20px -10px #78472025", "purpose": "Adds depth to a small SaaS illustration window." },
+      { "name": "phone-illustration", "value": "0 15px 25px -12px #2e5c6540", "purpose": "Separates the phone mockup in a case illustration." },
+      { "name": "mobile-menu", "value": "0 12px 25px #24292315", "purpose": "Lifts the open mobile navigation menu." }
+    ],
+    "motion": [
+      { "name": "button-hover", "value": "background 200ms, transform 200ms; translateY(-2px)", "purpose": "Deepens and gently lifts the primary button on hover." },
+      { "name": "chart-entrance", "value": "grow-bar 800ms cubic-bezier(0.16, 1, 0.3, 1), 35ms stagger", "purpose": "Reveals hero chart bars from the bottom." },
+      { "name": "reduced-motion", "value": "prefers-reduced-motion: reduce; transitions and animations disabled; smooth scrolling off", "purpose": "Respects the visitor's reduced-motion preference." }
+    ],
+    "breakpoints": [
+      { "name": "phone", "value": "540px", "purpose": "20px page gutters; sections reduce to 66px and grids stack." },
+      { "name": "tablet", "value": "800px", "purpose": "Navigation collapses and major content grids reorganize." },
+      { "name": "compact-desktop", "value": "1050px", "purpose": "28px page gutters and tighter desktop spacing." },
+      { "name": "wide-desktop", "value": "1440px", "purpose": "Hero breathing room increases." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main call to action with a small hover lift.",
+      "html": "<button class=\"ds-button-primary\" type=\"button\">Let’s talk <svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg></button>",
+      "css": ".ds-button-primary { display: inline-flex; align-items: center; justify-content: center; gap: 24px; min-height: 54px; padding: 15px 25px; border: 0; border-radius: 8px; background: var(--accent); color: #fff; font: 600 15px/1.4 'DM Sans Variable', sans-serif; cursor: pointer; transition: background 200ms, transform 200ms; } .ds-button-primary:hover { background: #953817; transform: translateY(-2px); } .ds-button-primary:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; } .ds-button-primary:disabled { opacity: .55; cursor: not-allowed; }"
+    },
+    {
+      "name": "Outline Header Action",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Quiet secondary contact action used in the desktop header.",
+      "html": "<a class=\"ds-button-outline\" href=\"#contact\">Let’s talk <svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"17\" height=\"17\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg></a>",
+      "css": ".ds-button-outline { display: inline-flex; align-items: center; gap: 16px; border: 1px solid #b6b8ae; border-radius: 7px; padding: 10px 17px; background: var(--paper); color: var(--ink); font: 600 14px 'DM Sans Variable', sans-serif; text-decoration: none; } .ds-button-outline:hover { background: #ebece3; } .ds-button-outline:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }"
+    },
+    {
+      "name": "Contact Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Warm, restrained field used in the project inquiry form.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Email</span><input class=\"ds-input\" type=\"email\" placeholder=\"you@email.com\" /></label>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 8px; color: var(--ink); font: 600 12px/1.4 'DM Sans Variable', sans-serif; } .ds-input { width: 100%; border: 1px solid #cbd0bf; border-radius: 6px; padding: 12px 14px; background: #fbfaf5; color: var(--ink); font: 400 14px/1.65 'DM Sans Variable', sans-serif; } .ds-input::placeholder { color: #71776b; } .ds-input:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }"
+    },
+    {
+      "name": "Site Navigation",
+      "kind": "nav",
+      "refersTo": "site-header",
+      "description": "Bilingual desktop navigation with orange hover and a quiet divider.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#services\">Services</a><a href=\"#about\">About</a><a href=\"#contact\">Contact</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 28px; font: 500 14px 'DM Sans Variable', sans-serif; } .ds-nav a { color: var(--ink); text-decoration: none; } .ds-nav a:hover { color: var(--accent); } .ds-nav a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }"
+    },
+    {
+      "name": "About Experience Panel",
+      "kind": "card",
+      "refersTo": "about-note",
+      "description": "Orange proof panel pairing a prominent experience figure with a short checklist.",
+      "html": "<aside class=\"ds-about-panel\"><strong>8<span>+</span></strong><p>Years of experience</p><ul><li>Understand the business</li><li>Review quality continuously</li><li>Support after delivery</li></ul></aside>",
+      "css": ".ds-about-panel { max-width: 480px; padding: 36px 42px; border-radius: 12px; background: var(--accent); color: #fff7ec; font-family: 'DM Sans Variable', sans-serif; } .ds-about-panel strong { display: block; color: #fff7ec; font: 550 88px/1 'Manrope Variable', sans-serif; letter-spacing: -.04em; } .ds-about-panel strong span { font-size: 55px; vertical-align: top; } .ds-about-panel p { margin: 12px 0 30px; color: #fff7ec; font-size: 16px; } .ds-about-panel ul { display: grid; gap: 18px; margin: 0; padding-left: 18px; font-size: 13px; }"
+    },
+    {
+      "name": "Dark Technology Section",
+      "kind": "custom",
+      "refersTo": "technology",
+      "description": "Full-width dark sage surface for durable engineering details.",
+      "html": "<section class=\"ds-technology\"><h2>Technology with <span>purpose</span></h2><p>Choose the right tools for the work.</p></section>",
+      "css": ".ds-technology { padding: 90px 32px; background: #293b32; color: #fbf9f0; font-family: 'DM Sans Variable', sans-serif; } .ds-technology h2 { max-width: 580px; color: #fbf9f0; font: 550 clamp(32px, 3.2vw, 44px)/1.15 'Manrope Variable', sans-serif; letter-spacing: -.035em; } .ds-technology h2 span { color: #d9bb91; } .ds-technology p { margin-top: 26px; color: #c7d0c7; font-size: 16px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Warm Systems Workshop",
+    "overview": "This is a code-led name for the implemented visual language, not an approved visual comp or a separately confirmed brand phrase. The site presents software work with the calm clarity of a well-kept studio: paper-toned space, dark readable type, warm orange calls to action, and sage panels that bring a quiet natural counterweight. The overall density is open, with generous section spacing and short, structured content groups.\n\nManrope gives headings a compact, contemporary shape; DM Sans keeps paragraphs, labels, and controls conversational and legible. A small dashboard illustration, outlined route diagrams, and soft geometry make the software subject tangible while keeping the presentation approachable and professional. The product context is bilingual, so the same system supports Spanish and English content without depending on language-specific styling.",
+    "keyCharacteristics": [
+      "Warm ivory surfaces with charcoal text and a restrained orange action color.",
+      "Sage and muted earth tones provide secondary surfaces and illustration colors.",
+      "Clear display/body type contrast and spacious, modular sections.",
+      "Friendly interface details within a professional software-services presentation."
+    ],
+    "rules": [
+      { "name": "The Single Accent Rule", "body": "Use orange to identify the brand and interactive emphasis; sage and earth tones carry supporting areas and illustration color.", "section": "colors" },
+      { "name": "The Balanced Heading Rule", "body": "Headings use tight tracking and balanced wrapping; reserve the display face for headings and prominent numeric proof.", "section": "typography" }
+    ],
+    "dos": [
+      "Do keep page backgrounds warm and text charcoal for the primary reading surface.",
+      "Do use orange for brand emphasis and important actions, with a deeper orange on button hover.",
+      "Do use sage and muted earth colors to support the orange without competing with it.",
+      "Do keep large layouts open, then stack the hero and card content at the implemented breakpoints.",
+      "Do preserve the orange focus outline and remove animation and smooth scrolling when reduced motion is requested.",
+      "Do keep the bilingual navigation and typography consistent across Spanish and English pages."
+    ],
+    "donts": [
+      "Don't promote supporting sage or illustration hues into competing primary action colors.",
+      "Don't add heavy shadows to broad content sections; depth belongs to compact illustrative surfaces and overlays.",
+      "Don't generalize the hero's tilted dashboard and organic shape into every card.",
+      "Don't make the mobile menu or form fields smaller than their existing accessible target and control treatment."
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+---
+import { ArrowDownRight } from '@lucide/astro';
+import { getCopy, type Locale } from '../i18n/content';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getCopy(locale);
+---
+
+<section
+  id="proceso"
+  class="section process-section"
+  aria-labelledby="process-title"
+>
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="process-title">{copy.process.title}</h2>
+      <p class="section-intro">{copy.process.intro}</p>
+    </div>
+
+    <ol class="process-grid">
+      {copy.process.steps.map((step, index) => (
+        <li class="process-step">
+          <span class="process-step-index" aria-hidden="true">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <div>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
+          {index < copy.process.steps.length - 1 && (
+            <ArrowDownRight
+              class="process-step-arrow"
+              size={20}
+              stroke-width={1.7}
+              aria-hidden="true"
+            />
+          )}
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

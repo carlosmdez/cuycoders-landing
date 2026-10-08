@@ -1,0 +1,48 @@
+---
+import { ArrowUpRight, CodeXml, Sparkles } from '@lucide/astro';
+import { getCopy, type Locale } from '../i18n/content';
+const { locale } = Astro.props as { locale: Locale };
+const c = getCopy(locale);
+const es = locale === 'es';
+---
+
+<section class="technology">
+  <div class="wrap technology-grid">
+    <div>
+      <h2>
+        {es ? 'Tecnología actual.' : 'Modern technology.'}
+        <br />
+        <span>{es ? 'Criterio para elegirla.' : 'Judgment to choose it.'}</span>
+      </h2>
+      <p>{c.technology.description}</p>
+      <a class="text-link" href="#contacto">
+        {es ? 'Encontremos tu solución' : 'Let’s find your solution'}
+        <ArrowUpRight size={18} />
+      </a>
+    </div>
+    <div class="tech-details">
+      <div class="tech-detail">
+        <CodeXml size={28} />
+        <h3>
+          {es
+            ? 'Una base que puede evolucionar'
+            : 'A foundation that can evolve'}
+        </h3>
+        <p>
+          {es
+            ? 'Desarrollo web y móvil, integraciones y arquitectura cloud. Adoptamos herramientas actuales con atención a la seguridad, el rendimiento y el mantenimiento.'
+            : 'Web and mobile development, integrations and cloud architecture. We adopt modern tools with attention to security, performance and maintenance.'}
+        </p>
+      </div>
+      <div class="tech-detail">
+        <Sparkles size={28} />
+        <h3>{es ? 'IA donde aporta valor' : 'AI where it adds value'}</h3>
+        <p>
+          {es
+            ? 'Automatización, búsqueda y asistentes conectados a tu información. Evaluamos la precisión y la privacidad antes de llevarlos al producto.'
+            : 'Automation, search and assistants connected to your information. We evaluate accuracy and privacy before bringing them into your product.'}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

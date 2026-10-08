@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import BlogCards from '../../../components/BlogCards.astro';
+import { locales, type Locale, getCopy } from '../../../i18n/content';
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+const locale = Astro.params.lang as Locale;
+const c = getCopy(locale);
+const posts = (
+  await getCollection('blog', (p) => p.data.locale === locale)
+).sort(
+  (a, b) =>
+    b.data.published.getTime() - a.data.published.getTime() ||
+    a.data.translationKey.localeCompare(b.data.translationKey),
+);
+---
+
+<Layout
+  locale={locale}
+  title={`Blog | Cuy Coders`}
+  description={c.blog.description}
+  alternatePath={`/${locale === 'es' ? 'en' : 'es'}/blog/`}
+>
+  <div class="wrap blog-heading">
+    <a class="text-link" href={`/${locale}/`}>
+      {c.common.back} · Cuy Coders
+    </a>
+    <h1>
+      {locale === 'es' ? 'El software empieza' : 'Great software starts'}
+      <br />
+      <span>
+        {locale === 'es' ? 'con buenas preguntas.' : 'with good questions.'}
+      </span>
+    </h1>
+  </div>
+  <BlogCards locale={locale} posts={posts} standalone />
+  <div class="wrap blog-bottom">
+    <p>
+      {locale === 'es'
+        ? '¿Tienes una pregunta sobre tu proyecto?'
+        : 'Have a question about your project?'}
+    </p>
+    <a class="button button-primary" href={`/${locale}/#contacto`}>
+      {locale === 'es' ? 'Hablemos de tu idea' : 'Let’s discuss your idea'}
+    </a>
+  </div>
+</Layout>
