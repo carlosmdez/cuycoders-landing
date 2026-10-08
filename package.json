@@ -3,17 +3,18 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12.0"
+    "bun": ">=1.4.2"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "check": "astro check",
-    "format": "prettier --write src astro.config.mjs",
-    "verify:build": "node scripts/verify-build.mjs",
-    "test:seo": "node --experimental-strip-types --test scripts/seo.test.mjs"
+    "dev": "bun ./node_modules/astro/bin/astro.mjs dev",
+    "build": "bun ./node_modules/astro/bin/astro.mjs build",
+    "preview": "bun ./node_modules/astro/bin/astro.mjs preview",
+    "astro": "bun ./node_modules/astro/bin/astro.mjs",
+    "check": "bun ./node_modules/astro/bin/astro.mjs check",
+    "format": "bun --bun prettier --write src astro.config.mjs",
+    "verify:build": "bun scripts/verify-build.mjs",
+    "test:seo": "bun test scripts/seo.test.mjs",
+    "verify:serving": "bun scripts/verify-serving.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
@@ -29,5 +30,6 @@
   "devDependencies": {
     "prettier": "^3.9.9",
     "prettier-plugin-astro": "^1.1.0"
-  }
+  },
+  "packageManager": "bun@1.4.2"
 }

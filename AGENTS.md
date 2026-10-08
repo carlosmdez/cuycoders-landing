@@ -20,3 +20,7 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+## Package manager
+
+Use Bun exclusively for installs, scripts and tests. Commit `bun.lock`; never add npm, pnpm or Yarn lockfiles. Run Astro CLI via Bun (`bun ./node_modules/astro/bin/astro.mjs`) so Docker builds do not require Node.js.

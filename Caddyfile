@@ -1,0 +1,26 @@
+{
+	admin off
+	auto_https off
+}
+
+:{$PORT:3000} {
+	root * {$STATIC_ROOT:/usr/share/caddy}
+	encode zstd gzip
+
+	@www host www.cuycoders.com
+	redir @www https://cuycoders.com{uri} 301
+	redir / /es/ 301
+
+	@immutable path /_astro/*
+	header @immutable Cache-Control "public, max-age=31536000, immutable"
+	header ?Cache-Control "public, max-age=0, must-revalidate"
+
+	handle /healthz {
+		header Cache-Control "no-store"
+		respond "ok" 200
+	}
+
+	handle {
+		file_server
+	}
+}
