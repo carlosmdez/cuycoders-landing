@@ -8,36 +8,41 @@ colors:
   ink: "#242923"
   muted: "#63675f"
   line: "#dddcd4"
-  sage-wash: "#edece3"
+  orange-soft: "#f2ba9c"
+  paper-raised: "#fffefa"
   sage-deep: "#293b32"
-  sage-light: "#e9ede1"
-  cream-white: "#fffefa"
+  sage-ink: "#364d29"
+  tint-sage: "#e7ebdd"
+  tint-peach: "#eedcc8"
+  tint-sky: "#dce5e6"
+  tint-lilac: "#e0e1ed"
+  tint-sand: "#edece3"
 typography:
   display:
-    fontFamily: "Manrope Variable, sans-serif"
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
     fontSize: "clamp(44px, 4.6vw, 65px)"
     fontWeight: 650
     lineHeight: 1.08
     letterSpacing: "-0.04em"
   headline:
-    fontFamily: "Manrope Variable, sans-serif"
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
     fontSize: "clamp(32px, 3.2vw, 44px)"
     fontWeight: 650
     lineHeight: 1.15
     letterSpacing: "-0.035em"
   title:
-    fontFamily: "Manrope Variable, sans-serif"
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
     fontSize: "22px"
     fontWeight: 650
     lineHeight: 1.15
     letterSpacing: "-0.025em"
   body:
-    fontFamily: "DM Sans Variable, sans-serif"
+    fontFamily: "Inter Tight Variable, sans-serif"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.65
   label:
-    fontFamily: "DM Sans Variable, sans-serif"
+    fontFamily: "Inter Tight Variable, sans-serif"
     fontSize: "12px"
     fontWeight: 600
     lineHeight: 1.4
@@ -89,7 +94,7 @@ components:
 
 This is a code-led name for the implemented visual language, not an approved visual comp or a separately confirmed brand phrase. The site presents software work with the calm clarity of a well-kept studio: paper-toned space, dark readable type, warm orange calls to action, and sage panels that bring a quiet natural counterweight. The overall density is open, with generous section spacing and short, structured content groups.
 
-Manrope gives headings a compact, contemporary shape; DM Sans keeps paragraphs, labels, and controls conversational and legible. A small dashboard illustration, outlined route diagrams, and soft geometry make the software subject tangible while keeping the presentation approachable and professional. The product context is bilingual, so the same system supports Spanish and English content without depending on language-specific styling.
+Bricolage Grotesque gives headings warmth and character; Inter Tight keeps paragraphs, labels, and controls compact and legible. A small dashboard illustration, outlined route diagrams, and soft geometry make the software subject tangible while keeping the presentation approachable and professional. The product context is bilingual, so the same system supports Spanish and English content without depending on language-specific styling.
 
 **Key Characteristics:**
 - Warm ivory surfaces with charcoal text and a restrained orange action color.
@@ -103,30 +108,41 @@ The palette pairs a warm, slightly yellow paper base with charcoal text, one con
 
 ### Primary
 - **Burnt Orange** (`{colors.orange}`): The brand mark, key headline emphasis, service icons, primary buttons, and selected illustration details.
-- **Deep Orange** (`{colors.orange-hover}`): The primary button hover state.
+- **Deep Orange** (`{colors.orange-hover}`): The primary button hover state (`--accent-hover`).
+- **Soft Orange** (`{colors.orange-soft}`): Light orange accents on dark or orange surfaces (`--accent-soft`).
 
 ### Secondary
 - **Deep Studio Sage** (`{colors.sage-deep}`): The technology section's full-width dark surface; warm cream text and muted green-gray paragraphs sit above it.
 
 ### Tertiary
-- **Soft Sage** (`{colors.sage-light}`): The hero illustration's organic backdrop and recurring positive-status details.
+- **Sage Ink** (`{colors.sage-ink}`): Dark green text and detail on sage tints.
+
+### Pastel Tint Scale
+Five quiet washes, exposed as `--tint-*` tokens, carry surfaces and small chips. Orange or muted text stays at 4.5:1 or better on all of them.
+- **Tint Sage** (`{colors.tint-sage}`): Contact section, hero backdrop, case and journal cover backgrounds.
+- **Tint Peach** (`{colors.tint-peach}`): Case tiles, journal covers, first service icon and process index chips, hero stat tile, and a 45% mix behind the About section.
+- **Tint Sky** (`{colors.tint-sky}`): Case tiles, second hero stat tile, and rotating chips.
+- **Tint Lilac** (`{colors.tint-lilac}`): Journal covers and rotating chips.
+- **Tint Sand** (`{colors.tint-sand}`): Neutral warm surface for quiet panels.
+
+Service icons (44px, 10px radius) and process step indices (pill) rotate peach, sage, sky, lilac.
 
 ### Neutral
 - **Warm Paper** (`{colors.paper}`): The page canvas and header/footer environment.
 - **Charcoal Ink** (`{colors.ink}`): Headings, key labels, and primary text.
 - **Quiet Gray-Green** (`{colors.muted}`): Paragraph text and secondary navigation information.
 - **Soft Divider** (`{colors.line}`): Hairline borders between header, rows, and footer areas.
-- **Cream White** (`{colors.cream-white}`): Bright elevated surfaces in the dashboard illustration.
+- **Raised Paper** (`{colors.paper-raised}`, `--paper-raised`): Bright elevated surfaces in the dashboard illustration.
 
 **The Single Accent Rule.** Use orange to identify the brand and interactive emphasis; sage and earth tones carry supporting areas and illustration color.
 
 ## Typography
 
-**Display Font:** Manrope Variable (with sans-serif fallback)  
-**Body Font:** DM Sans Variable (with sans-serif fallback)  
-**Label/Mono Font:** DM Sans Variable; no separate mono family is used.
+**Display Font:** Bricolage Grotesque Variable (with sans-serif fallback)  
+**Body Font:** Inter Tight Variable (with sans-serif fallback)  
+**Label/Mono Font:** Inter Tight Variable; no separate mono family is used.
 
-**Character:** Manrope's rounded geometric forms give the headings a confident, contemporary voice. DM Sans keeps supporting copy and controls easy to scan without making the layout feel formal or technical.
+**Character:** Bricolage Grotesque is a warm, slightly quirky grotesque with character, giving headings a confident, human voice. Inter Tight is a compact, highly legible UI sans that keeps supporting copy and controls easy to scan without making the layout feel formal or technical.
 
 ### Hierarchy
 - **Display** (weight 650, `clamp(44px, 4.6vw, 65px)`, line-height 1.08): Hero heading; it tightens to 43px on small screens and reaches 68px at wide desktop sizes.
@@ -172,7 +188,7 @@ Confident, compact actions use a warm fill and a small lift on hover.
 Cards keep content readable and illustrations soft-edged.
 - **Case tiles:** Illustrative panels are 220px high on desktop, 12px rounded, and use distinct sage, clay, or blue-gray backgrounds. Their content remains unboxed beneath.
 - **Journal covers:** 207px high on desktop, 12px rounded, with abstract CSS illustrations; card metadata and text sit below the cover.
-- **Hero dashboard:** Cream-white surface with 12px corners, clipped contents, and a soft shadow; small stat tiles use a pale gray-green fill and 7px corners.
+- **Hero dashboard:** Cream-white surface with 12px corners, clipped contents, and a soft shadow; small stat tiles use peach and sky tints and 7px corners.
 - **About note:** Orange panel with 12px corners, 36px 42px desktop padding, white-cream text, and a large experience numeral.
 
 ### Inputs / Fields

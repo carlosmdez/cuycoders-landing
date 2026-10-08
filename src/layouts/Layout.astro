@@ -1,8 +1,8 @@
 ---
 import '../styles/global.css';
 import '../styles/fonts.css';
-import manropeFont from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
-import dmSansFont from '@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url';
+import displayFont from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url';
+import bodyFont from '@fontsource-variable/inter-tight/files/inter-tight-latin-wght-normal.woff2?url';
 import { serializeJsonLd } from '../lib/seo';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -33,17 +33,20 @@ const alternate = Astro.site ? new URL(alternatePath, Astro.site) : undefined;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
       rel="preload"
-      href={manropeFont}
+      href={displayFont}
       as="font"
       type="font/woff2"
       crossorigin
     />
     <link
       rel="preload"
-      href={dmSansFont}
+      href={bodyFont}
       as="font"
       type="font/woff2"
       crossorigin
@@ -97,5 +100,23 @@ const alternate = Astro.site ? new URL(alternatePath, Astro.site) : undefined;
       <slot />
     </main>
     <Footer locale={locale} />
+    <script>
+      const targets = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      if (!('IntersectionObserver' in window)) {
+        targets.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          },
+          { rootMargin: '0px 0px -10% 0px', threshold: 0.12 },
+        );
+        targets.forEach((el) => observer.observe(el));
+      }
+    </script>
   </body>
 </html>

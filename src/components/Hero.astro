@@ -9,14 +9,30 @@ import {
   Settings,
   Plus,
   Ellipsis,
-  CodeXml,
+  Globe,
+  Smartphone,
+  Cloud,
   Sparkles,
   TrendingUp,
 } from '@lucide/astro';
+import CuyMark from './CuyMark.astro';
 import { getCopy, type Locale } from '../i18n/content';
 const { locale } = Astro.props as { locale: Locale };
 const c = getCopy(locale);
 const es = locale === 'es';
+// Each headline pairs with the rotating word and icon at the same index.
+const titles = es
+  ? ['Más de 8 años', 'Rápidos y a tu medida', 'Listos para escalar', 'Con propósito claro']
+  : ['Over 8 years', 'Fast and tailored', 'Built to scale', 'With a clear purpose'];
+const words = es
+  ? ['apps móviles', 'sitios web', 'productos SaaS', 'soluciones con IA']
+  : ['mobile apps', 'websites', 'SaaS products', 'AI solutions'];
+const fullSentence = es
+  ? 'Más de 8 años creando apps móviles, sitios web, productos SaaS y soluciones con IA'
+  : 'Over 8 years building mobile apps, websites, SaaS products and AI solutions';
+const strip = es
+  ? ['Web', 'Android', 'iOS', 'SaaS', 'Inteligencia artificial', 'Automatización', 'Integraciones', 'Mantenimiento']
+  : ['Web', 'Android', 'iOS', 'SaaS', 'Artificial intelligence', 'Automation', 'Integrations', 'Maintenance'];
 ---
 
 <section class="hero wrap">
@@ -36,34 +52,35 @@ const es = locale === 'es';
       <ArrowDown size={16} />
     </a>
     <div class="hero-proof">
-      <span class="proof-avatars" aria-hidden="true">
-        <span>CC</span>
-        <span>
-          <CodeXml size={18} />
-        </span>
-        <span>
-          <Sparkles size={18} />
-        </span>
+      <span class="proof-chip" aria-hidden="true">
+        <span class="proof-icon is-active" data-icon><Smartphone size={17} stroke-width={2} /></span>
+        <span class="proof-icon" data-icon><Globe size={17} stroke-width={2} /></span>
+        <span class="proof-icon" data-icon><Cloud size={17} stroke-width={2} /></span>
+        <span class="proof-icon" data-icon><Sparkles size={17} stroke-width={2} /></span>
       </span>
       <p>
-        <strong>{es ? 'Más de 8 años' : 'Over 8 years'}</strong>
-        <br />
-        {es
-          ? 'convirtiendo ideas en soluciones.'
-          : 'turning ideas into solutions.'}
+        <span class="sr-only">{fullSentence}</span>
+        <span aria-hidden="true">
+          <strong class="proof-words proof-titles">
+            {titles.map((t, i) => (
+              <span class:list={['proof-word', { 'is-active': i === 0 }]} data-title>{t}</span>
+            ))}
+          </strong>
+          <br />
+          {es ? 'creando' : 'building'}
+          <span class="proof-words">
+            {words.map((w, i) => (
+              <span class:list={['proof-word', { 'is-active': i === 0 }]} data-word>{w}</span>
+            ))}
+          </span>
+        </span>
       </p>
     </div>
   </div>
   <div class="hero-art">
-    <div class="orbit-label">
-      <span class="status-dot"></span>
-      {es
-        ? 'Tu próximo gran proyecto empieza aquí'
-        : 'Your next great project starts here'}
-    </div>
     <div class="product-demo">
       <div class="demo-top">
-        <span class="demo-logo">c.</span>
+        <CuyMark size={28} class="demo-logo" />
         <strong>{es ? 'Mi espacio de trabajo' : 'My workspace'}</strong>
         <Ellipsis size={20} />
       </div>
@@ -139,29 +156,80 @@ const es = locale === 'es';
         </small>
       </div>
     </div>
-    <p class="demo-caption">
-      {es
-        ? 'Vista conceptual · Datos ilustrativos'
-        : 'Concept view · Illustrative data'}
-    </p>
-    <div class="art-code" aria-hidden="true">
-      &lt;/&gt;
-    </div>
   </div>
 </section>
-<div class="capability-strip">
-  <div class="wrap">
-    <span>
-      {es ? 'Una idea. Muchas posibilidades.' : 'One idea. Many possibilities.'}
-    </span>
-    <strong>Web</strong>
-    <span class="strip-dot"></span>
-    <strong>Android & iOS</strong>
-    <span class="strip-dot"></span>
-    <strong>SaaS</strong>
-    <span class="strip-dot"></span>
-    <strong>
-      {es ? 'Inteligencia artificial' : 'Artificial intelligence'}
-    </strong>
+<div class="capability-strip" data-reveal>
+  <div class="strip-marquee">
+    <div class="strip-track">
+      <ul class="strip-list">
+        {strip.map((t) => (
+          <li>{t}</li>
+        ))}
+      </ul>
+      <ul class="strip-list strip-list-copy" aria-hidden="true">
+        {strip.map((t) => (
+          <li>{t}</li>
+        ))}
+      </ul>
+    </div>
   </div>
 </div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.hero-proof');
+  if (root) {
+    const icons = [...root.querySelectorAll<HTMLElement>('[data-icon]')];
+    const words = [...root.querySelectorAll<HTMLElement>('[data-word]')];
+    const titles = [...root.querySelectorAll<HTMLElement>('[data-title]')];
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const n = Math.min(icons.length, words.length);
+    let index = 0;
+    let timer: number | undefined;
+    let visible = true;
+
+    const show = (next: number) => {
+      for (const list of [words, icons, titles]) {
+        list[index].classList.remove('is-active');
+        list[index].classList.add('is-past');
+      }
+      index = next;
+      for (const list of [words, icons, titles]) {
+        list[index].classList.remove('is-past');
+        list[index].classList.add('is-active');
+      }
+    };
+    const tick = () => show((index + 1) % n);
+    const stop = () => {
+      if (timer !== undefined) window.clearInterval(timer);
+      timer = undefined;
+    };
+    const sync = () => {
+      stop();
+      if (!reduce.matches && visible && !document.hidden) {
+        timer = window.setInterval(tick, 2400);
+      }
+    };
+
+    if (!reduce.matches) {
+      new IntersectionObserver((entries) => {
+        visible = entries[entries.length - 1].isIntersecting;
+        sync();
+      }).observe(root);
+      document.addEventListener('visibilitychange', sync);
+    }
+    reduce.addEventListener('change', () => {
+      if (reduce.matches) {
+        stop();
+        [words, icons, titles].forEach((list) =>
+          list.forEach((el, i) => {
+            el.classList.toggle('is-active', i === 0);
+            el.classList.remove('is-past');
+          }),
+        );
+        index = 0;
+      } else {
+        sync();
+      }
+    });
+  }
+</script>

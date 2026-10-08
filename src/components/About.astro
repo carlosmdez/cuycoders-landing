@@ -17,7 +17,7 @@ const copy = getCopy(locale);
 >
   <div class="wrap">
     <div class="about-grid">
-      <div class="about-story">
+      <div class="about-story" data-reveal>
         <div class="section-head">
           <h2 id="about-title">{copy.about.title}</h2>
         </div>
@@ -30,6 +30,8 @@ const copy = getCopy(locale);
 
       <aside
         class="about-note"
+        data-reveal
+        style="--reveal-index: 1"
         aria-label={locale === 'es' ? 'Experiencia' : 'Experience'}
       >
         <p class="about-years">

@@ -31,14 +31,19 @@ const placeholders = isSpanish
 >
   <div class="wrap">
     <div class="contact-grid">
-      <div class="contact-copy">
+      <div class="contact-copy" data-reveal>
         <div class="section-head">
           <h2 id="contact-title">{copy.contact.title}</h2>
           <p class="section-intro">{copy.contact.description}</p>
         </div>
       </div>
 
-      <div class="contact-card" data-contact-card>
+      <div
+        class="contact-card"
+        data-contact-card
+        data-reveal
+        style="--reveal-index: 1"
+      >
         <div class="contact-card-inner">
           <form
             class="contact-form"

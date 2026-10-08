@@ -1,30 +1,10 @@
 ---
+import CuyMark from './CuyMark.astro';
 const { href = '/es/' } = Astro.props;
 ---
 
 <a class="brand" href={href}>
-  <svg
-    width="38"
-    height="38"
-    viewBox="0 0 38 38"
-    fill="none"
-    aria-hidden="true"
-  >
-    <rect width="38" height="38" rx="12" fill="currentColor" />
-    <path
-      d="M11 17c-4-6 3-10 6-4m4 0c3-6 10-2 6 4M9 23c0-7 4-11 10-11s10 4 10 11c0 5-5 7-10 7S9 28 9 23Z"
-      stroke="#fff8ee"
-      stroke-width="1.8"
-    />
-    <circle cx="14.5" cy="21" r="1.4" fill="#fff8ee" />
-    <circle cx="23.5" cy="21" r="1.4" fill="#fff8ee" />
-    <path
-      d="m17 25 2 2 2-2"
-      stroke="#fff8ee"
-      stroke-width="1.8"
-      stroke-linecap="round"
-    />
-  </svg>
+  <CuyMark class="brand-mark" />
   <span>
     cuy<span class="brand-weight">coders</span>
     <span class="brand-dot">.</span>

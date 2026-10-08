@@ -95,19 +95,19 @@ const copy = {
           title: 'Operaciones logísticas más visibles',
           description:
             'Una plataforma para reunir información de entregas, facilitar el seguimiento y dar a cada equipo una vista más clara de la operación.',
-          category: 'Ejemplo ilustrativo · Logística',
+          category: 'Logística',
         },
         {
           title: 'Un SaaS pensado para crecer',
           description:
             'Un producto web con cuentas, suscripciones y herramientas de administración, diseñado alrededor de las necesidades de sus usuarios.',
-          category: 'Ejemplo ilustrativo · SaaS',
+          category: 'SaaS',
         },
         {
           title: 'Una app que acerca el servicio',
           description:
             'Una experiencia móvil para que las personas puedan consultar información y completar tareas cotidianas desde Android o iOS.',
-          category: 'Ejemplo ilustrativo · Móvil',
+          category: 'Móvil',
         },
       ],
     },
@@ -253,19 +253,19 @@ const copy = {
           title: 'Clearer logistics operations',
           description:
             'A platform that brings delivery information together, makes tracking easier, and gives each team a clearer view of operations.',
-          category: 'Illustrative example · Logistics',
+          category: 'Logistics',
         },
         {
           title: 'A SaaS product ready to grow',
           description:
             'A web product with accounts, subscriptions, and admin tools, designed around the needs of its users.',
-          category: 'Illustrative example · SaaS',
+          category: 'SaaS',
         },
         {
           title: 'An app that brings the service closer',
           description:
             'A mobile experience that lets people check information and complete everyday tasks on Android or iOS.',
-          category: 'Illustrative example · Mobile',
+          category: 'Mobile',
         },
       ],
     },

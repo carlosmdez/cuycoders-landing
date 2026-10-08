@@ -39,8 +39,10 @@ const c = getCopy(locale);
       <span class:list={{ selected: locale === 'en' }}>EN</span>
     </a>
     <a class="header-cta" href={`/${locale}/#contacto`}>
-      {locale === 'es' ? 'Hablemos' : 'Let’s talk'}
-      <ArrowUpRight size={17} />
+      <span>{locale === 'es' ? 'Hablemos' : 'Let’s talk'}</span>
+      <span class="header-cta-icon" aria-hidden="true">
+        <ArrowUpRight size={16} />
+      </span>
     </a>
   </div>
   <details class="mobile-menu">

@@ -4,7 +4,7 @@ import {
   Brain,
   Building,
   Globe,
-  Layers,
+  Cloud,
   Smartphone,
 } from '@lucide/astro';
 import { getCopy, type Locale } from '../i18n/content';
@@ -15,6 +15,25 @@ interface Props {
 
 const { locale } = Astro.props;
 const copy = getCopy(locale);
+const es = locale === 'es';
+const file = es ? 'proyecto.ts' : 'project.ts';
+const code = es
+  ? [
+      [['kw', 'const'], ' solución = ', ['fn', 'entender'], '(negocio)'],
+      ['  .', ['fn', 'diseñar'], '()'],
+      ['  .', ['fn', 'construir'], '({ calidad: ', ['str', "'continua'"], ' })'],
+      ['  .', ['fn', 'lanzar'], '()'],
+      [['cm', '// y acompañamos después']],
+      [['kw', 'await'], ' solución.', ['fn', 'mejorar'], '()'],
+    ]
+  : [
+      [['kw', 'const'], ' solution = ', ['fn', 'understand'], '(business)'],
+      ['  .', ['fn', 'design'], '()'],
+      ['  .', ['fn', 'build'], '({ quality: ', ['str', "'continuous'"], ' })'],
+      ['  .', ['fn', 'launch'], '()'],
+      [['cm', '// and we stay with you']],
+      [['kw', 'await'], ' solution.', ['fn', 'improve'], '()'],
+    ];
 ---
 
 <section
@@ -23,30 +42,41 @@ const copy = getCopy(locale);
   aria-labelledby="services-title"
 >
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <h2 id="services-title">{copy.services.title}</h2>
       <p class="section-intro">{copy.services.intro}</p>
+      <div class="code-card" aria-hidden="true" data-reveal style="--reveal-index: 1">
+        <div class="code-card-bar">
+          <span></span><span></span><span></span>
+          <b>{file}</b>
+        </div>
+        <pre class="code-card-body"><code>{code.map((line, n) => (
+          <span class="code-line"><i>{n + 1}</i>{line.map((part) =>
+            typeof part === 'string' ? part : <span class={`tok-${part[0]}`}>{part[1]}</span>
+          )}{n === code.length - 1 && <span class="code-caret"></span>}</span>
+        ))}</code></pre>
+      </div>
     </div>
 
     <ul class="services-list">
-      {copy.services.items.map((service) => (
-        <li class="service-row">
+      {copy.services.items.map((service, index) => (
+        <li class="service-row" data-reveal style={`--reveal-index: ${index}`}>
           <div class="service-copy">
             <h3>{service.title}</h3>
             <p>{service.description}</p>
           </div>
           <span class="service-icon" aria-hidden="true">
-            {service.icon === 'globe' && <Globe size={24} stroke-width={1.7} />}
+            {service.icon === 'globe' && <Globe size={28} stroke-width={1.6} />}
             {service.icon === 'smartphone' && (
-              <Smartphone size={24} stroke-width={1.7} />
+              <Smartphone size={28} stroke-width={1.6} />
             )}
             {service.icon === 'layers' && (
-              <Layers size={24} stroke-width={1.7} />
+              <Cloud size={28} stroke-width={1.6} />
             )}
             {service.icon === 'building' && (
-              <Building size={24} stroke-width={1.7} />
+              <Building size={28} stroke-width={1.6} />
             )}
-            {service.icon === 'brain' && <Brain size={24} stroke-width={1.7} />}
+            {service.icon === 'brain' && <Brain size={28} stroke-width={1.6} />}
           </span>
         </li>
       ))}

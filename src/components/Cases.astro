@@ -2,8 +2,7 @@
 import {
   ArrowUpRight,
   Truck,
-  Layers,
-  Smartphone,
+  TrendingUp,
   Check,
   MapPin,
 } from '@lucide/astro';
@@ -14,29 +13,34 @@ const es = locale === 'es';
 ---
 
 <section class="section wrap" id="casos">
-  <div class="section-head">
+  <div class="section-head" data-reveal>
     <h2>{c.cases.title}</h2>
     <p class="section-intro">{c.cases.intro}</p>
   </div>
   <div class="cases-grid">
     {c.cases.items.map((item, i) => (
-      <article class:list={['case-item', `case-${i}`]}>
+      <article
+        class:list={['case-item', `case-${i}`]}
+        data-reveal
+        style={`--reveal-index: ${i}`}
+      >
         <div class="case-visual" aria-hidden="true">
           {i === 0 ? (
-            <div class="logistics-art">
-              <Truck size={34} />
-              <span class="route-line"></span>
-              <span class="route-point">
-                <MapPin size={22} />
-              </span>
-              <div class="route-label">
-                {es ? 'Todo conectado' : 'All connected'}
-                <Check size={15} />
+            <div class="logistics-map">
+              <div class="logistics-stage">
+                <svg class="logistics-route" viewBox="0 0 240 100" preserveAspectRatio="none">
+                  <path d="M30 76 C 70 76, 84 26, 120 44 S 176 30, 206 28" vector-effect="non-scaling-stroke" />
+                </svg>
+                <span class="logistics-origin"></span>
+                <span class="logistics-pin"><MapPin size={22} fill="currentColor" /></span>
+                <span class="logistics-truck"><Truck size={16} /></span>
               </div>
+              <span class="logistics-status">
+                <i></i>{es ? 'En ruta · 3 entregas' : 'On route · 3 deliveries'}
+              </span>
             </div>
           ) : i === 1 ? (
             <div class="saas-art">
-              <Layers size={34} />
               <div class="saas-window">
                 <span></span>
                 <span></span>
@@ -44,19 +48,25 @@ const es = locale === 'es';
                 <div></div>
                 <div></div>
               </div>
+              <span class="saas-pill">
+                <TrendingUp size={14} />+24%
+              </span>
             </div>
           ) : (
             <div class="mobile-art">
               <div class="phone">
                 <span class="phone-notch"></span>
-                <Smartphone size={25} />
-                <span class="phone-line"></span>
-                <span class="phone-line short"></span>
-                <span class="phone-action">
-                  <Check size={18} />
-                </span>
+                <div class="phone-feed">
+                  <span class="phone-row"><i></i><span><b></b><b></b></span></span>
+                  <span class="phone-row"><i></i><span><b></b><b></b></span></span>
+                  <span class="phone-row"><i></i><span><b></b><b></b></span></span>
+                  <span class="phone-row"><i></i><span><b></b><b></b></span></span>
+                  <span class="phone-row"><i></i><span><b></b><b></b></span></span>
+                  <span class="phone-action">
+                    <Check size={18} />
+                  </span>
+                </div>
               </div>
-              <div class="phone-chip">Android + iOS</div>
             </div>
           )}
         </div>
