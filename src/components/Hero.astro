@@ -12,7 +12,7 @@ import {
   Globe,
   Smartphone,
   Cloud,
-  Sparkles,
+  Brain,
   TrendingUp,
 } from '@lucide/astro';
 import CuyMark from './CuyMark.astro';
@@ -20,10 +20,7 @@ import { getCopy, type Locale } from '../i18n/content';
 const { locale } = Astro.props as { locale: Locale };
 const c = getCopy(locale);
 const es = locale === 'es';
-// Each headline pairs with the rotating word and icon at the same index.
-const titles = es
-  ? ['Más de 8 años', 'Rápidos y a tu medida', 'Listos para escalar', 'Con propósito claro']
-  : ['Over 8 years', 'Fast and tailored', 'Built to scale', 'With a clear purpose'];
+// Each rotating word pairs with the icon at the same index.
 const words = es
   ? ['apps móviles', 'sitios web', 'productos SaaS', 'soluciones con IA']
   : ['mobile apps', 'websites', 'SaaS products', 'AI solutions'];
@@ -56,18 +53,13 @@ const strip = es
         <span class="proof-icon is-active" data-icon><Smartphone size={17} stroke-width={2} /></span>
         <span class="proof-icon" data-icon><Globe size={17} stroke-width={2} /></span>
         <span class="proof-icon" data-icon><Cloud size={17} stroke-width={2} /></span>
-        <span class="proof-icon" data-icon><Sparkles size={17} stroke-width={2} /></span>
+        <span class="proof-icon" data-icon><Brain size={17} stroke-width={2} /></span>
       </span>
       <p>
         <span class="sr-only">{fullSentence}</span>
         <span aria-hidden="true">
-          <strong class="proof-words proof-titles">
-            {titles.map((t, i) => (
-              <span class:list={['proof-word', { 'is-active': i === 0 }]} data-title>{t}</span>
-            ))}
-          </strong>
-          <br />
-          {es ? 'creando' : 'building'}
+          <strong>{es ? 'Más de 8 años' : '8+ years'}</strong>
+          {es ? ' creando' : ' building'}
           <span class="proof-words">
             {words.map((w, i) => (
               <span class:list={['proof-word', { 'is-active': i === 0 }]} data-word>{w}</span>
@@ -180,7 +172,6 @@ const strip = es
   if (root) {
     const icons = [...root.querySelectorAll<HTMLElement>('[data-icon]')];
     const words = [...root.querySelectorAll<HTMLElement>('[data-word]')];
-    const titles = [...root.querySelectorAll<HTMLElement>('[data-title]')];
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
     const n = Math.min(icons.length, words.length);
     let index = 0;
@@ -188,12 +179,12 @@ const strip = es
     let visible = true;
 
     const show = (next: number) => {
-      for (const list of [words, icons, titles]) {
+      for (const list of [words, icons]) {
         list[index].classList.remove('is-active');
         list[index].classList.add('is-past');
       }
       index = next;
-      for (const list of [words, icons, titles]) {
+      for (const list of [words, icons]) {
         list[index].classList.remove('is-past');
         list[index].classList.add('is-active');
       }
@@ -220,7 +211,7 @@ const strip = es
     reduce.addEventListener('change', () => {
       if (reduce.matches) {
         stop();
-        [words, icons, titles].forEach((list) =>
+        [words, icons].forEach((list) =>
           list.forEach((el, i) => {
             el.classList.toggle('is-active', i === 0);
             el.classList.remove('is-past');

@@ -2,24 +2,22 @@
 name: Cuy Coders
 description: A warm, clear design system for a bilingual software studio.
 colors:
-  orange: "#bb4724"
-  orange-hover: "#953817"
-  paper: "#f8f6f0"
-  ink: "#242923"
-  muted: "#63675f"
-  line: "#dddcd4"
-  orange-soft: "#f2ba9c"
-  paper-raised: "#fffefa"
-  sage-deep: "#293b32"
-  sage-ink: "#364d29"
+  cuy: "#e3964f"
+  cuy-hover: "#d9843a"
+  accent: "#b4581e"
+  accent-hover: "#96461a"
+  accent-display: "#d9662b"
+  accent-soft: "#f6cba9"
+  paper: "#fbf7f1"
+  paper-raised: "#fffdf9"
+  ink: "#2e221d"
+  muted: "#6b5d55"
+  line: "#eadfd3"
   tint-sage: "#e7ebdd"
-  tint-peach: "#eedcc8"
+  tint-peach: "#f7dfcb"
   tint-sky: "#dce5e6"
   tint-lilac: "#e0e1ed"
-  tint-sand: "#edece3"
-  cream: "#fff7ec"
-  apricot: "#ffe1b7"
-  sand-gold: "#d9bb91"
+  tint-sand: "#f1e9df"
 typography:
   display:
     fontFamily: "Bricolage Grotesque Variable, sans-serif"
@@ -192,14 +190,14 @@ spacing:
   section-desktop: "108px"
 components:
   button-primary:
-    backgroundColor: "{colors.orange}"
-    textColor: "#ffffff"
+    backgroundColor: "{colors.cuy}"
+    textColor: "{colors.ink}"
     typography: "{typography.button}"
     rounded: "{rounded.control}"
     padding: "15px 25px"
     height: "54px"
   button-primary-hover:
-    backgroundColor: "{colors.orange-hover}"
+    backgroundColor: "{colors.cuy-hover}"
   button-pill:
     backgroundColor: "{colors.tint-peach}"
     textColor: "{colors.ink}"
@@ -207,7 +205,7 @@ components:
     rounded: "{rounded.pill}"
     padding: "7px 7px 7px 18px"
   input:
-    backgroundColor: "#fbfaf5"
+    backgroundColor: "{colors.paper-raised}"
     textColor: "{colors.ink}"
     typography: "{typography.body}"
     rounded: "{rounded.field}"
@@ -235,44 +233,33 @@ Bricolage Grotesque gives headings warmth and character; Inter Tight keeps parag
 
 ## Colors
 
-The palette pairs a warm, slightly yellow paper base with charcoal text, one confident burnt-orange accent, and quiet sage greens; local illustration colors add clay and blue-gray where needed.
+The palette is drawn from the cuy mark itself: its cream fur gives the paper, its cocoa outline gives the ink, and its golden-orange coat gives the action color. Neutrals are warm on purpose; cool gray-greens made the page fight the mascot.
 
 ### Primary
-- **Burnt Orange** (`{colors.orange}`): The brand mark, key headline emphasis, service icons, primary buttons, and selected illustration details.
-- **Deep Orange** (`{colors.orange-hover}`): The primary button hover state (`--accent-hover`).
-- **Soft Orange** (`{colors.orange-soft}`): Light orange accents on dark or orange surfaces (`--accent-soft`).
-
-### Secondary
-- **Deep Studio Sage** (`{colors.sage-deep}`): The technology section's full-width dark surface; warm cream text and muted green-gray paragraphs sit above it.
-
-### Tertiary
-- **Sage Ink** (`{colors.sage-ink}`): Dark green text and detail on sage tints.
+- **Cuy Orange** (`{colors.cuy}`, `--cuy`): Fills for primary buttons, the header CTA disc, the hero proof chip, the AI chat bubble and capability-strip dots. Text on it is always ink (6.4:1); white text on it fails contrast.
+- **Cuy Orange Hover** (`{colors.cuy-hover}`): Primary button hover.
+- **Toasted Orange** (`{colors.accent}`, `--accent`): Body-size accents: rotating proof words, checklist and chip icons, links in article meta, focus ring and caret. 4.5:1 on paper.
+- **Tangerine** (`{colors.accent-display}`, `--accent-display`): Display-size emphasis only: the hero and section heading second lines and the About "+". 3.3:1 on paper, so never for body-size text.
+- **Soft Orange** (`{colors.accent-soft}`): Text selection.
 
 ### Pastel Tint Scale
-Five quiet washes, exposed as `--tint-*` tokens, carry surfaces and small chips. Orange or muted text stays at 4.5:1 or better on all of them.
-- **Tint Sage** (`{colors.tint-sage}`): Contact section, hero backdrop, case and journal cover backgrounds.
-- **Tint Peach** (`{colors.tint-peach}`): Case tiles, journal covers, the header "Hablemos" pill, a hero stat tile, and a 45% mix behind the About section. It also matches the logo badge background.
-- **Tint Sky** (`{colors.tint-sky}`): Case tiles and the second hero stat tile.
-- **Tint Lilac** (`{colors.tint-lilac}`): Journal covers.
-- **Tint Sand** (`{colors.tint-sand}`): Neutral warm surface for quiet panels.
-
-Service icons and process step numbers stay plain accent-colored; tints are for surfaces, not icon chips.
-
-### Warm Accents
-- **Cream** (`{colors.cream}`): Text and numerals on the orange About note.
-- **Apricot** (`{colors.apricot}`): Checklist icons on the orange About note.
-- **Sand Gold** (`{colors.sand-gold}`): Headline emphasis and icons on the dark technology band.
-
-Illustrations (`src/styles/illustrations.css`) keep their own local clay, sage and blue-gray tones and micro type scale; they are drawn mockups, not UI.
+Surfaces for illustrated panels; the content that belongs to them sits unboxed below.
+- **Tint Peach** (`{colors.tint-peach}`): The logo badge color. About experience panel, a case tile, journal covers, the header pill.
+- **Tint Sage** (`{colors.tint-sage}`): Contact section, hero backdrop, case and journal covers.
+- **Tint Sky** (`{colors.tint-sky}`): Technology "stack" panel, a case tile, the second hero stat.
+- **Tint Lilac** (`{colors.tint-lilac}`): Technology AI panel, journal covers.
+- **Tint Sand** (`{colors.tint-sand}`): Quiet warm fills (open mobile menu, empty covers).
 
 ### Neutral
-- **Warm Paper** (`{colors.paper}`): The page canvas and header/footer environment.
-- **Charcoal Ink** (`{colors.ink}`): Headings, key labels, and primary text.
-- **Quiet Gray-Green** (`{colors.muted}`): Paragraph text and secondary navigation information.
-- **Soft Divider** (`{colors.line}`): Hairline borders between header, rows, and footer areas.
-- **Raised Paper** (`{colors.paper-raised}`, `--paper-raised`): Bright elevated surfaces in the dashboard illustration.
+- **Cream Paper** (`{colors.paper}`): Page canvas.
+- **Raised Paper** (`{colors.paper-raised}`): Chips, inputs and illustrated surfaces.
+- **Cocoa Ink** (`{colors.ink}`): Headings and primary text.
+- **Warm Taupe** (`{colors.muted}`): Paragraphs and secondary text (5.9:1 on paper, 4.9:1 or better on every tint).
+- **Soft Divider** (`{colors.line}`): Hairlines.
 
-**The Single Accent Rule.** Use orange to identify the brand and interactive emphasis; sage and earth tones carry supporting areas and illustration color.
+Illustrations (`src/styles/illustrations.css`) keep their own local clay, sage and blue-gray tones.
+
+**The Single Accent Rule.** Orange means the brand and the action. One orange family, two jobs: the coat orange fills, the toasted orange speaks in text. No dark full-bleed bands; sections separate with space and tinted panels.
 
 ## Typography
 
@@ -341,8 +328,8 @@ Field and card borders are quiet rather than decorative. The hero's sage backdro
 ### Buttons
 Confident, compact actions use a warm fill and a small lift on hover.
 - **Shape:** Rounded rectangle (8px); 54px minimum height.
-- **Primary:** Orange fill and white text, with 15px 25px padding, 15px semibold type, and a 24px icon gap.
-- **Hover / Focus:** Hover deepens the orange and lifts by 2px over 200ms. Keyboard focus uses the shared 3px orange outline with 5px offset.
+- **Primary:** Cuy orange fill and cocoa ink text, with 15px 25px padding, 15px semibold type, and a 24px icon gap.
+- **Hover / Focus:** Hover deepens the coat orange and lifts by 2px over 200ms. Keyboard focus uses the shared 3px orange outline with 5px offset.
 - **Pill (header CTA):** A peach pill (`--tint-peach` background, ink 14px semibold text, pill radius, 1px inset orange hairline at 18%) with 7px 7px 7px 18px padding and a 14px gap. It ends in a 30px orange disc holding a white arrow; on hover the pill mixes toward orange (18%) and the disc rotates 45deg and scales to 1.08. Pressing scales the pill to 0.97.
 - **Text action:** Inline links use semibold 15px text with a 12px icon gap; hover underlines with a 5px offset.
 
@@ -351,7 +338,8 @@ Cards keep content readable and illustrations soft-edged.
 - **Case tiles:** Illustrative panels are 220px high on desktop, 12px rounded, and use distinct sage, clay, or blue-gray backgrounds. Their content remains unboxed beneath.
 - **Journal covers:** 207px high on desktop, 12px rounded, with abstract CSS illustrations; card metadata and text sit below the cover.
 - **Hero dashboard:** Cream-white surface with 12px corners, clipped contents, and a soft shadow; small stat tiles use peach and sky tints and 7px corners.
-- **About note:** Orange panel with 12px corners, 36px 42px desktop padding, white-cream text, and a large experience numeral.
+- **About experience panel:** Peach tile (12px corners) with the 8+ numeral and label in ink, the "+" in toasted orange, and the cuy mark peeking up from the lower edge; the checklist sits unboxed below with toasted-orange checks.
+- **Technology panels:** Two tiles in the case-tile language: a sky panel with stacked Web/Mobile/Cloud chips and a lilac panel with a question bubble (cuy orange) and an AI reply chip; heading and copy sit below.
 
 ### Inputs / Fields
 The contact fields are understated and warm.

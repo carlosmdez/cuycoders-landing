@@ -5,15 +5,15 @@ export const locales = ['es', 'en'] as const;
 const copy = {
   es: {
     hero: {
-      title: 'Software que entiende',
-      accent: 'tu negocio.',
+      title: 'Creamos el software',
+      accent: 'que tu negocio necesita.',
       description:
-        'Diseñamos y construimos software a la medida para resolver necesidades reales. Desde una web hasta una plataforma empresarial, te acompañamos desde la primera idea hasta el mantenimiento.',
-      primary: 'Cuéntanos tu proyecto',
+        'Web, apps móviles, SaaS e IA hechos a tu medida. Primero entendemos tu negocio, luego construimos paso a paso y seguimos contigo después del lanzamiento.',
+      primary: 'Cuéntanos tu idea',
       secondary: 'Conoce nuestros servicios',
     },
     services: {
-      title: 'La solución adecuada para lo que necesitas',
+      title: 'Lo que podemos construir para ti',
       intro:
         'Primero entendemos el reto completo; después elegimos la tecnología y el alcance que mejor responden a él.',
       items: [
@@ -50,7 +50,7 @@ const copy = {
       ],
     },
     about: {
-      title: 'Un equipo que ve el panorama completo',
+      title: 'Un equipo que entiende tu negocio',
       body: 'Llevamos más de ocho años creando software y colaborando con empresas de distintos países. Nos tomamos el tiempo para entender tus objetivos, tus procesos y las necesidades de quienes usarán el producto antes de definir cómo construirlo.',
       points: [
         'Experiencia trabajando con compañías internacionales.',
@@ -60,7 +60,7 @@ const copy = {
       ],
     },
     process: {
-      title: 'Un proceso claro, de principio a evolución',
+      title: 'Así trabajamos, paso a paso',
       intro:
         'Cada proyecto tiene su propio alcance. Mantenemos las decisiones y prioridades visibles para avanzar con confianza.',
       steps: [
@@ -87,7 +87,7 @@ const copy = {
       ],
     },
     cases: {
-      title: 'Formas en que el software puede ayudar',
+      title: 'Ejemplos de lo que podemos hacer',
       intro:
         'Estos ejemplos ilustrativos muestran algunos retos que podemos abordar junto contigo.',
       items: [
@@ -117,13 +117,13 @@ const copy = {
         'Elegimos herramientas según el problema, el equipo y la evolución esperada del producto. Así cada decisión técnica tiene un propósito claro y ayuda a construir algo que se pueda mantener.',
     },
     blog: {
-      title: 'Ideas y aprendizajes sobre software',
+      title: 'Artículos sobre software',
       description:
         'Compartimos perspectivas prácticas sobre desarrollo, productos digitales y decisiones tecnológicas.',
       link: 'Visita el blog',
     },
     contact: {
-      title: 'Hablemos de lo que quieres construir',
+      title: 'Hablemos de tu proyecto',
       description:
         'Cuéntanos qué necesitas resolver. Te ayudaremos a entender las opciones y definir un alcance adecuado para tu proyecto.',
       name: 'Nombre',
@@ -163,15 +163,15 @@ const copy = {
   },
   en: {
     hero: {
-      title: 'Software that understands',
-      accent: 'your business.',
+      title: 'We build the software',
+      accent: 'your business needs.',
       description:
-        'We design and build custom software to solve real needs. From a website to an enterprise platform, we work with you from the first idea through ongoing maintenance.',
-      primary: 'Tell us about your project',
+        'Web, mobile, SaaS and AI built around how you work. We learn your business first, build step by step, and stay with you after launch.',
+      primary: 'Tell us your idea',
       secondary: 'Explore our services',
     },
     services: {
-      title: 'The right solution for what you need',
+      title: 'What we can build for you',
       intro:
         'We start by understanding the whole challenge, then choose the technology and scope that fit it best.',
       items: [
@@ -208,7 +208,7 @@ const copy = {
       ],
     },
     about: {
-      title: 'A team that sees the whole picture',
+      title: 'A team that understands your business',
       body: 'We have more than eight years of experience building software and working with companies in different countries. Before deciding how to build, we take time to understand your goals, processes, and the needs of the people who will use the product.',
       points: [
         'Experience working with international companies.',
@@ -218,7 +218,7 @@ const copy = {
       ],
     },
     process: {
-      title: 'A clear process, from first step to what comes next',
+      title: 'How we work, step by step',
       intro:
         'Every project has its own scope. We keep decisions and priorities visible so we can move forward with confidence.',
       steps: [
@@ -245,7 +245,7 @@ const copy = {
       ],
     },
     cases: {
-      title: 'Ways software can help',
+      title: 'Examples of what we can do',
       intro:
         'These illustrative examples show some of the challenges we can take on together.',
       items: [
@@ -275,13 +275,13 @@ const copy = {
         'We choose tools based on the problem, the team, and how the product is expected to evolve. Each technical decision has a clear purpose and helps us build something that can be maintained.',
     },
     blog: {
-      title: 'Ideas and lessons about software',
+      title: 'Articles about software',
       description:
         'We share practical perspectives on development, digital products, and technology decisions.',
       link: 'Visit the blog',
     },
     contact: {
-      title: 'Let’s talk about what you want to build',
+      title: 'Let’s talk about your project',
       description:
         'Tell us what you need to solve. We’ll help you understand the options and define a scope that fits your project.',
       name: 'Name',

@@ -1,5 +1,6 @@
 ---
 import { ArrowUpRight, Check } from '@lucide/astro';
+import CuyMark from './CuyMark.astro';
 import { getCopy, type Locale } from '../i18n/content';
 
 interface Props {
@@ -32,14 +33,17 @@ const copy = getCopy(locale);
         class="about-note"
         aria-label={locale === 'es' ? 'Experiencia' : 'Experience'}
       >
-        <p class="about-years">
-          8<span>+</span>
-        </p>
-        <p class="about-years-label">
-          {locale === 'es'
-            ? 'años creando software'
-            : 'years building software'}
-        </p>
+        <div class="about-visual">
+          <p class="about-years">
+            8<span>+</span>
+          </p>
+          <p class="about-years-label">
+            {locale === 'es'
+              ? 'años creando software'
+              : 'years building software'}
+          </p>
+          <CuyMark size={150} class="about-cuy" />
+        </div>
         <ul class="checklist">
           {copy.about.points.map((point) => (
             <li>
