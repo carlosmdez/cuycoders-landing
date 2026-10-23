@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "bun ./node_modules/astro/bin/astro.mjs dev",
     "build": "bun ./node_modules/astro/bin/astro.mjs build",
+    "deploy": "bunx wrangler deploy",
     "preview": "bun ./node_modules/astro/bin/astro.mjs preview",
     "astro": "bun ./node_modules/astro/bin/astro.mjs",
     "check": "bun ./node_modules/astro/bin/astro.mjs check",

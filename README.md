@@ -24,7 +24,7 @@ bun run verify:build
 bun run preview
 ```
 
-La salida estática está en `dist/`. La raíz redirige a `/es/`; el inglés está en `/en/`. En Railway, Caddy hace la redirección HTTP 301; otros hosts estáticos conservan el redirect HTML de Astro.
+La salida estática está en `dist/`. La raíz redirige a `/es/`; el inglés está en `/en/`. En Cloudflare, `public/_redirects` aplica la redirección HTTP 301; en Railway la aplica Caddy.
 
 El dominio de producción confirmado es `https://cuycoders.com`. La compilación genera canonical, hreflang, Open Graph URL y sitemap con ese origen. `SITE_URL` permite cambiarlo si el dominio de publicación cambia; debe contener únicamente el origen, sin subcarpetas. `robots.txt` incluye la ubicación del sitemap.
 
@@ -41,6 +41,44 @@ El dominio de producción confirmado es `https://cuycoders.com`. La compilación
 El formulario envía a `https://formserve.io/f/rvcKqtYUGPA` mediante Formserve. Con JavaScript muestra una tarjeta de agradecimiento animada solo tras confirmar el envío; conserva los datos ante errores y evita envíos simultáneos. Sin JavaScript usa POST HTML. En Formserve, autoriza `cuycoders.com` y los orígenes locales que utilices (por ejemplo `localhost:4321`); revisa las notificaciones del endpoint.
 
 Los casos y las cifras de la vista de producto son ilustrativos. Sustitúyelos por casos documentados cuando estén disponibles. La marca tiene un pequeño símbolo de cuy; los gráficos geométricos pueden reemplazarse por imágenes de marca.
+
+## Cloudflare Workers
+
+`wrangler.jsonc` publica `dist/` como Static Assets: no requiere adaptador de Astro ni código de servidor. La dirección `workers.dev` está habilitada y las URLs de preview deshabilitadas. Wrangler se descarga mediante `bunx`, sin dependencia ni versión fija en el proyecto.
+
+Conecta este repositorio y su rama `main` en Workers Builds:
+
+| Campo | Valor |
+| --- | --- |
+| Worker name | `cuycoders-landing` |
+| Build command | `bun run build` |
+| Deploy command | `bunx wrangler deploy` |
+| Preview command | `bunx wrangler preview` |
+| Enable Preview builds | Desactivado |
+| Protect with Cloudflare Access | Desactivado para el sitio público |
+| Root directory / Path | `/` |
+| Build cache | Activado |
+| Build variable `BUN_VERSION` | `1.4.2` |
+| Build variable `NODE_VERSION` | `22.16.0` |
+
+Permite que Workers Builds cree su API token. El nombre en Cloudflare debe coincidir con `cuycoders-landing`. No necesitas `SITE_URL` mientras publiques en `https://cuycoders.com`, el dominio predeterminado de Astro.
+
+Para validar sin publicar:
+
+```sh
+bun install --frozen-lockfile
+bun run check
+bun test
+bun run build
+bun run verify:build
+bunx wrangler deploy --dry-run
+```
+
+El script `bun run deploy` también ejecuta `bunx wrangler deploy`, publicando el build existente. Para publicar manualmente, autentícate con `bunx wrangler login` antes de compilar y desplegar.
+
+Cloudflare sirve los archivos y administra la caché sin Caddy. Se conservan las URLs con barra final y la redirección `/` → `/es/`; las rutas inexistentes responden 404. `/health` pertenece al contenedor de Caddy y no es necesario en Workers Static Assets.
+
+Después de verificar el sitio en `workers.dev`, conecta `cuycoders.com` desde **Settings → Domains & Routes → Add → Custom Domain**. La redirección de `www.cuycoders.com` al dominio principal que antes hacía Caddy debe configurarse en **Redirect Rules** de la zona de Cloudflare, conservando la ruta y los parámetros de consulta. Autoriza los dominios usados por el formulario en Formserve.
 
 ## Railway y Caddy
 
