@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schema.railpack.com",
+  "provider": "node",
+  "deploy": {
+    "inputs": [
+      {
+        "image": "caddy:2-alpine",
+        "include": ["/usr/bin/caddy"]
+      },
+      {
+        "step": "build",
+        "include": ["dist", "Caddyfile"]
+      }
+    ],
+    "startCommand": "caddy run --config /app/Caddyfile --adapter caddyfile",
+    "variables": {
+      "STATIC_ROOT": "/app/dist"
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".astro",
+    ".git",
+    ".github",
+    ".vscode",
+    ".env*",
+    ".agents",
+    ".claude",
+    ".codex",
+    ".impeccable",
+    "docs",
+    "/*.md",
+    "package-lock.json",
+    "npm-shrinkwrap.json",
+    "pnpm-lock.yaml",
+    "yarn.lock",
+    ".DS_Store",
+    ".wrangler"
+  ]
+}
