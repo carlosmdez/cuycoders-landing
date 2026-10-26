@@ -19,7 +19,6 @@
     ],
     "startCommand": "caddy run --config /app/Caddyfile --adapter caddyfile",
     "variables": {
-      "PORT": "3000",
       "STATIC_ROOT": "/app/dist"
     }
   }

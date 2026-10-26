@@ -44,12 +44,14 @@ Los casos y las cifras de la vista de producto son ilustrativos. Sustitúyelos p
 
 ## Dokploy con Railpack y Caddy
 
+`.env.example` muestra las variables para copiar a Dokploy o a un `.env` local. Dokploy las inyecta en el proceso del contenedor; el `.env` no se copia a la imagen. Caddy conserva `3000` como respaldo si no se define `PORT`.
+
 `railpack.json` es la configuración de despliegue. Railpack detecta Bun desde `package.json`, instala las dependencias con `bun install --frozen-lockfile` y ejecuta `bun run build`. La versión de Bun se toma de `packageManager` (`bun@1.4.2`). No se necesita un Dockerfile ni Wrangler. Los archivos excluidos del contexto de compilación se declaran en `.dockerignore`.
 
 La fase de despliegue copia el binario de Caddy desde `caddy:2-alpine` sobre la imagen de runtime de Railpack. Desde el build incluye solo `dist/` y el `Caddyfile` del repositorio. El comando de arranque de Caddy está declarado explícitamente en `railpack.json`; no depende de que Railpack reconozca automáticamente Astro como sitio estático. No ejecuta Astro ni necesita Bun o Node en runtime. `STATIC_ROOT=/app/dist` hace que Caddy sirva la salida que copia Railpack.
 
 1. Conecta este repositorio y la rama `main` en Dokploy. Selecciona **Build Type: Railpack**, **Build Path: /** y deja vacíos los comandos personalizados de instalación, build y arranque.
-2. Configura el dominio con **puerto interno 3000** y el healthcheck en `/health`. `PORT=3000` está definido en `railpack.json`; si lo cambias, ajusta también el puerto del dominio en Dokploy.
+2. Declara `PORT` en **Environment** de Dokploy (por ejemplo, `PORT=3000`) y configura el dominio con ese mismo puerto interno. El healthcheck es `/health`. Railpack no fija `PORT`; Caddy recibe la variable al arrancar.
 3. Añade `cuycoders.com` y, si lo usas, `www.cuycoders.com` en Dokploy con sus DNS y certificados. Caddy redirige `www` al dominio principal; el proxy de Dokploy termina HTTPS. No montes un volumen sobre `/app/dist`.
 4. No se requieren variables adicionales: el dominio de compilación predeterminado es `https://cuycoders.com`. Si cambia, configura `SITE_URL` como variable disponible durante el build en Dokploy y recompila para regenerar canonical y sitemap.
 5. Autoriza el dominio en Formserve y verifica la recepción de solicitudes después del despliegue.
