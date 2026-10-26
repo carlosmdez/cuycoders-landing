@@ -42,16 +42,16 @@ El formulario envía a `https://formserve.io/f/rvcKqtYUGPA` mediante Formserve. 
 
 Los casos y las cifras de la vista de producto son ilustrativos. Sustitúyelos por casos documentados cuando estén disponibles. La marca tiene un pequeño símbolo de cuy; los gráficos geométricos pueden reemplazarse por imágenes de marca.
 
-## Railway con Railpack y Caddy
+## Dokploy con Railpack y Caddy
 
-`railpack.json` es la configuración de despliegue. Railpack detecta Bun desde `package.json`, instala las dependencias con `bun install --frozen-lockfile` y ejecuta `bun run build`. La versión de Bun se toma de `packageManager` (`bun@1.4.2`). No se necesita un Dockerfile ni Wrangler. Los archivos excluidos de la compilación también se declaran en `railpack.json`.
+`railpack.json` es la configuración de despliegue. Railpack detecta Bun desde `package.json`, instala las dependencias con `bun install --frozen-lockfile` y ejecuta `bun run build`. La versión de Bun se toma de `packageManager` (`bun@1.4.2`). No se necesita un Dockerfile ni Wrangler. Los archivos excluidos del contexto de compilación se declaran en `.dockerignore`.
 
 La fase de despliegue copia el binario de Caddy desde `caddy:2-alpine` sobre la imagen de runtime de Railpack. Desde el build incluye solo `dist/` y el `Caddyfile` del repositorio. El comando de arranque de Caddy está declarado explícitamente en `railpack.json`; no depende de que Railpack reconozca automáticamente Astro como sitio estático. No ejecuta Astro ni necesita Bun o Node en runtime. `STATIC_ROOT=/app/dist` hace que Caddy sirva la salida que copia Railpack.
 
-1. Conecta este repositorio a Railway y selecciona **Railpack** como builder, con la raíz del proyecto como **Root Directory**. Retira cualquier ruta de Dockerfile y deja vacíos los comandos personalizados de build/start para usar la detección de Railpack.
-2. Configura **Healthcheck Path** como `/health`. Caddy escucha el `PORT` inyectado por Railway (3000 como alternativa local).
-3. Añade `cuycoders.com` como dominio público y configura el DNS indicado por Railway. Si también añades `www.cuycoders.com`, Caddy lo redirige al dominio principal. Railway termina HTTPS delante de Caddy.
-4. No se requieren variables adicionales: el dominio de compilación predeterminado es `https://cuycoders.com`. Si cambia, configura `SITE_URL` en Railway y recompila para regenerar canonical y sitemap.
+1. Conecta este repositorio y la rama `main` en Dokploy. Selecciona **Build Type: Railpack**, **Build Path: /** y deja vacíos los comandos personalizados de instalación, build y arranque.
+2. Configura el dominio con **puerto interno 3000** y el healthcheck en `/health`. `PORT=3000` está definido en `railpack.json`; si lo cambias, ajusta también el puerto del dominio en Dokploy.
+3. Añade `cuycoders.com` y, si lo usas, `www.cuycoders.com` en Dokploy con sus DNS y certificados. Caddy redirige `www` al dominio principal; el proxy de Dokploy termina HTTPS. No montes un volumen sobre `/app/dist`.
+4. No se requieren variables adicionales: el dominio de compilación predeterminado es `https://cuycoders.com`. Si cambia, configura `SITE_URL` como variable disponible durante el build en Dokploy y recompila para regenerar canonical y sitemap.
 5. Autoriza el dominio en Formserve y verifica la recepción de solicitudes después del despliegue.
 
 Caddy comprime con gzip/zstd, sirve las rutas de Astro con barra final, mantiene una caché de un año para `/_astro/*` con hash y exige revalidación para el resto. Las rutas inexistentes devuelven 404; no hay fallback de SPA.
