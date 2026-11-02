@@ -14,6 +14,7 @@ interface Props {
   description: string;
   alternatePath?: string;
   schema?: Record<string, unknown>;
+  noindex?: boolean;
 }
 const {
   locale,
@@ -21,11 +22,13 @@ const {
   description,
   alternatePath = `/${locale === 'es' ? 'en' : 'es'}/`,
   schema,
+  noindex = false,
 } = Astro.props;
 const c = getCopy(locale);
 const canonical = Astro.site
   ? new URL(Astro.url.pathname, Astro.site)
   : undefined;
+const ogImage = Astro.site ? new URL('/og-image.png', Astro.site) : undefined;
 const alternate = Astro.site ? new URL(alternatePath, Astro.site) : undefined;
 ---
 
@@ -46,6 +49,7 @@ const alternate = Astro.site ? new URL(alternatePath, Astro.site) : undefined;
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link
       rel="preload"
       href={displayFont}
@@ -64,6 +68,7 @@ const alternate = Astro.site ? new URL(alternatePath, Astro.site) : undefined;
     <meta name="theme-color" content="#f8f6f0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     {canonical && (
       <>
         <link rel="canonical" href={canonical} />
@@ -95,7 +100,19 @@ const alternate = Astro.site ? new URL(alternatePath, Astro.site) : undefined;
     />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:card" content="summary" />
+    {ogImage && (
+      <>
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Cuy Coders" />
+        <meta name="twitter:image" content={ogImage} />
+      </>
+    )}
+    <meta
+      name="twitter:card"
+      content={ogImage ? 'summary_large_image' : 'summary'}
+    />
     {schema && (
       <script type="application/ld+json" set:html={serializeJsonLd(schema)} />
     )}

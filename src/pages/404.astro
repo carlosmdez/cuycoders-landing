@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  locale="es"
+  title="Página no encontrada | Cuy Coders"
+  description="La página que busca no existe o cambió de dirección."
+  alternatePath="/en/"
+  noindex
+>
+  <section class="mx-auto max-w-2xl px-6 py-24">
+    <p class="text-sm font-medium" style="color: var(--accent)">404</p>
+    <h1 class="mt-3 text-4xl" style="font-family: var(--display)">
+      Página no encontrada
+    </h1>
+    <p class="mt-4" style="color: var(--muted)">
+      La dirección no existe o cambió. Puede volver al inicio en
+      <a class="underline" href="/es/">español</a> o
+      <a class="underline" href="/en/">English</a>.
+    </p>
+  </section>
+</Layout>
